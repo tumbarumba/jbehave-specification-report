@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply from: "$rootDir/gradle/libraries.gradle"
+
+ext {
+    group = 'com.exubero.jbehave'
+    version = '0.0.1-SNAPSHOT'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile libs.jbehaveCore
+
+    testCompile libs.hamcrestLibrary,
+            libs.junit,
+            libs.mockito
+
+}
+
+checkstyle {
+    configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+    sourceSets = [project.sourceSets.main]
+}
+
