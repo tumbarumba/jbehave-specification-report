@@ -11,13 +11,19 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    test {
+        // JBehave searches for story resources in the same location as the step classes
+        output.resourcesDir = "build/classes/test"
+    }
+}
+
 dependencies {
     compile libs.jbehaveCore
 
     testCompile libs.hamcrestLibrary,
             libs.junit,
             libs.mockito
-
 }
 
 checkstyle {
