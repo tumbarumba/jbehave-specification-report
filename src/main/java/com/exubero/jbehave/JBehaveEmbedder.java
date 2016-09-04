@@ -46,7 +46,7 @@ public final class JBehaveEmbedder extends ConfigurableEmbedder {
                         .withDefaultFormats()
                         .withFormats(CONSOLE, XML)
                         .withFailureTrace(true))
-                .useViewGenerator(new SinglePageViewGenerator());
+                .useViewGenerator(new SpecificationViewGenerator());
     }
 
     private List<String> storyPaths() {
@@ -57,5 +57,6 @@ public final class JBehaveEmbedder extends ConfigurableEmbedder {
     public void run() throws Throwable {
         List<String> storyPaths = storyPaths();
         configuredEmbedder().runStoriesAsPaths(storyPaths);
+        configuredEmbedder().mapStoriesAsPaths(storyPaths);
     }
 }

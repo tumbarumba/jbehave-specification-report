@@ -3,6 +3,8 @@ package com.exubero.jbehave;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import com.thoughtworks.xstream.XStream;
+import org.jbehave.core.model.Story;
 import org.jbehave.core.model.StoryMaps;
 import org.jbehave.core.reporters.ReportsCount;
 import org.jbehave.core.reporters.ViewGenerator;
@@ -18,10 +20,10 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 
-public class SinglePageViewGenerator implements ViewGenerator {
+public class SpecificationViewGenerator implements ViewGenerator {
     @Override
     public void generateMapsView(File outputDirectory, StoryMaps storyMaps, Properties viewResources) {
-
+        System.out.println("generateMapsView");
     }
 
     @Override
@@ -31,10 +33,10 @@ public class SinglePageViewGenerator implements ViewGenerator {
 
         ReportModel reportModel = new ReportModel(asList(xmlFiles));
 
-        File reportFile = new File(outputDirectory, "report.html");
+        File reportFile = new File(outputDirectory, "specification.html");
         try(Writer writer = new FileWriter(reportFile)) {
             MustacheFactory mustacheFactory = new DefaultMustacheFactory();
-            Mustache mustache = mustacheFactory.compile("report.mustache");
+            Mustache mustache = mustacheFactory.compile("specification.mustache");
             mustache.execute(writer, reportModel);
         } catch (IOException e) {
             throw new RuntimeException("Failed to write report " + reportFile.getAbsolutePath(), e);
@@ -81,11 +83,21 @@ public class SinglePageViewGenerator implements ViewGenerator {
 
     public static final class StoryModel {
         private final File xmlFile;
+//        private final Story story;
 
         public StoryModel(File xmlFile) {
             this.xmlFile = xmlFile;
+//            this.story = readStoryFrom(xmlFile);
         }
 
+//        private Story readStoryFrom(File xmlFile) {
+//            XStream xstream = new XStream();
+//            xstream.alias("story", Story.class);
+//
+//            Story story = (Story)xstream.fromXML(xmlFile);
+//            return story;
+//        }
+//
         public static StoryModel fromXml(File xmlFile) {
             return new StoryModel(xmlFile);
         }
@@ -93,6 +105,10 @@ public class SinglePageViewGenerator implements ViewGenerator {
         public String file() throws IOException {
             return xmlFile.getCanonicalPath();
         }
+
+//        public String name() {
+//            return story.getName();
+//        }
     }
 
 }
