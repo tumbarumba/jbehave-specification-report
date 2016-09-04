@@ -19,7 +19,8 @@ sourceSets {
 }
 
 dependencies {
-    compile libs.jbehaveCore
+    compile libs.jbehaveCore,
+            libs.mustacheCompiler
 
     testCompile libs.hamcrestLibrary,
             libs.junit,
