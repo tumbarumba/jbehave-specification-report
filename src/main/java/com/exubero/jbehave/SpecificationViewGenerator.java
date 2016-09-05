@@ -33,6 +33,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
     public void generateMapsView(File outputDirectory, StoryMaps storyMaps, Properties viewResources) {
         ReportModel reportModel = new ReportModel(storyMaps);
 
+        outputDirectory.mkdirs();
         File reportFile = new File(outputDirectory, "specification.html");
         try(Writer writer = new FileWriter(reportFile)) {
             MustacheFactory mustacheFactory = new DefaultMustacheFactory();
@@ -41,7 +42,6 @@ public class SpecificationViewGenerator implements ViewGenerator {
         } catch (IOException e) {
             throw new RuntimeException("Failed to write report " + reportFile.getAbsolutePath(), e);
         }
-
     }
 
     @Override
