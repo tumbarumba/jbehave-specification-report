@@ -23,37 +23,52 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#navbar-col">
 <div class="container">
     <div class="row">
-        <h1>Specifications</h1>
-        {{#stories}}
-            <hr>
-            <h2 id="{{path}}">{{name}}</h2>
-            {{^isTopLevel}}
-                <ol class="breadcrumb">
-                    {{#breadcrumbs}}
-                        <li>{{.}}</li>
-                    {{/breadcrumbs}}
-                </ol>
-            {{/isTopLevel}}
-            <p>{{description}}</p>
-            <div class="alert alert-info">
-                <p>{{{narrative}}}</p>
-            </div>
-            {{#scenarios}}
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h4>{{title}}</h4>
-                    </div>
-                    <div class="panel-body">
-                        {{#steps}}
-                            {{.}}<br>
-                        {{/steps}}
-                    </div>
+        <div class="col-md-9 col-md-offset-3">
+            <h1>Specifications</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <nav id="navbar-col" class="hidden-print hidden-sm hidden-xs affix">
+                <ul class="nav">
+                    {{#stories}}
+                        <li><a href="#{{pathId}}">{{name}}</a></li>
+                    {{/stories}}
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-9">
+            {{#stories}}
+                <hr>
+                <h2 id="{{pathId}}">{{name}}</h2>
+                {{^isTopLevel}}
+                    <ol class="breadcrumb">
+                        {{#breadcrumbs}}
+                            <li>{{.}}</li>
+                        {{/breadcrumbs}}
+                    </ol>
+                {{/isTopLevel}}
+                <p>{{description}}</p>
+                <div class="alert alert-info">
+                    <p>{{{narrative}}}</p>
                 </div>
-            {{/scenarios}}
-        {{/stories}}
+                {{#scenarios}}
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h4>{{title}}</h4>
+                        </div>
+                        <div class="panel-body">
+                            {{#steps}}
+                                {{.}}<br>
+                            {{/steps}}
+                        </div>
+                    </div>
+                {{/scenarios}}
+            {{/stories}}
+        </div>
     </div>
 </div>
 

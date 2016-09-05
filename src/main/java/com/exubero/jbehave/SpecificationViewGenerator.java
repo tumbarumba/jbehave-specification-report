@@ -113,6 +113,10 @@ public class SpecificationViewGenerator implements ViewGenerator {
             return story.getPath();
         }
 
+        public String pathId() {
+            return path().replaceAll("/", "_");
+        }
+
         public String description() {
             return story.getDescription().asString();
         }
