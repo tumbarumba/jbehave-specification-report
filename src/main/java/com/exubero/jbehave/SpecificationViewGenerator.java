@@ -242,8 +242,26 @@ public class SpecificationViewGenerator implements ViewGenerator {
             return stepResult.getResult().toString();
         }
 
+        public String getResultClass() {
+            switch (stepResult.getResult()) {
+                case SUCCESSFUL:    return "success";
+                case IGNORABLE:     return "default";
+                case PENDING:       return "warning";
+                case NOT_PERFORMED: return "info";
+                case FAILED:        return "danger";
+            }
+            return "fire";
+        }
+
         public String getResultIcon() {
-            return "hand";
+            switch (stepResult.getResult()) {
+                case SUCCESSFUL:    return "ok-circle";
+                case IGNORABLE:     return "minus";
+                case PENDING:       return "time";
+                case NOT_PERFORMED: return "ban-circle";
+                case FAILED:        return "remove-circle";
+            }
+            return "fire";
         }
     }
 

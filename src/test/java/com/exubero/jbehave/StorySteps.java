@@ -15,6 +15,11 @@ public class StorySteps {
     public void whenIDoSomething() {
     }
 
+    @When("I do something pending")
+    @Pending
+    public void whenIDoSomethingPending() {
+    }
+
     @Then("system is in a different state")
     public void thenSystemIsInADifferentState() {
     }

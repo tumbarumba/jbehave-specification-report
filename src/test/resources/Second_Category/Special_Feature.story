@@ -7,7 +7,7 @@ So that I can achieve a business goal
 
 Scenario: Special Feature Scenario
 Given a system state
-When I do something
+When I do something pending
 Then system is in a different state
 
 Scenario: Another Special Feature Scenario
