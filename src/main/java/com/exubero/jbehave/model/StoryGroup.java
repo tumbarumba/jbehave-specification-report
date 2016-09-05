@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import static com.exubero.jbehave.model.StringConverter.convertToTitle;
+import static com.exubero.jbehave.model.TitleConverter.convertToTitle;
 
 public final class StoryGroup {
     private final String path;

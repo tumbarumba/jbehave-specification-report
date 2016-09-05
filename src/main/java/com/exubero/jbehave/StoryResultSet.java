@@ -4,6 +4,7 @@ import org.jbehave.core.model.Scenario;
 import org.jbehave.core.model.Story;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,10 @@ public class StoryResultSet {
             storyResult.addScenarioResult(scenarioResult);
         });
         return storyResult;
+    }
+
+    public Collection<StoryResult> storyResults() {
+        return pathToStoryResult.values();
     }
 
     public enum Result {

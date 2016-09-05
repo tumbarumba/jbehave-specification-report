@@ -27,7 +27,12 @@ public class SpecificationViewGenerator implements ViewGenerator {
 
     @Override
     public void generateMapsView(File outputDirectory, StoryMaps storyMaps, Properties viewResources) {
-        ReportModel reportModel = new ReportModel(storyMaps, storyResultSet, keywords);
+        throw new UnsupportedOperationException("generateMapsView");
+    }
+
+    @Override
+    public void generateReportsView(File outputDirectory, List<String> formats, Properties viewResources) {
+        ReportModel reportModel = new ReportModel(storyResultSet, keywords);
 
         outputDirectory.mkdirs();
         File reportFile = new File(outputDirectory, "specification.html");
@@ -38,11 +43,6 @@ public class SpecificationViewGenerator implements ViewGenerator {
         } catch (IOException e) {
             throw new RuntimeException("Failed to write report " + reportFile.getAbsolutePath(), e);
         }
-    }
-
-    @Override
-    public void generateReportsView(File outputDirectory, List<String> formats, Properties viewResources) {
-        System.out.println("SpecificationViewGenerator.generateReportsView");
     }
 
     @Override

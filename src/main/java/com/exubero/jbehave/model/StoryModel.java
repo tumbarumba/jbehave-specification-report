@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.exubero.jbehave.model.StringConverter.convertToTitle;
+import static com.exubero.jbehave.model.TitleConverter.convertToTitle;
 
 public final class StoryModel {
     private final StoryResultSet.StoryResult storyResult;
@@ -30,7 +30,7 @@ public final class StoryModel {
         String[] pathParts = path().split("/");
         return Arrays.stream(pathParts)
                 .limit(pathParts.length - 1)
-                .map(StringConverter::convertToTitle)
+                .map(TitleConverter::convertToTitle)
                 .collect(Collectors.toList());
     }
 

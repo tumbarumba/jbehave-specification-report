@@ -17,10 +17,10 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
 import static org.jbehave.core.reporters.Format.XML;
 
-public final class JBehaveEmbedder extends ConfigurableEmbedder {
+public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {
     private final URL codeLocation;
 
-    private JBehaveEmbedder(Object... steps) {
+    private JBehaveSpecificationBuilder(Object... steps) {
         Objects.requireNonNull(steps);
         Objects.requireNonNull(steps[0]);
 
@@ -29,8 +29,8 @@ public final class JBehaveEmbedder extends ConfigurableEmbedder {
         useStepsFactory(new ProvidedStepsFactory(candidateSteps));
     }
 
-    public static JBehaveEmbedder aJBehaveEmbedderWithSteps(Object... steps) {
-        return new JBehaveEmbedder(steps);
+    public static JBehaveSpecificationBuilder aSpecificationBuilderWithSteps(Object... steps) {
+        return new JBehaveSpecificationBuilder(steps);
     }
 
     @Override
@@ -61,6 +61,5 @@ public final class JBehaveEmbedder extends ConfigurableEmbedder {
     public void run() throws Throwable {
         List<String> storyPaths = storyPaths();
         configuredEmbedder().runStoriesAsPaths(storyPaths);
-        configuredEmbedder().mapStoriesAsPaths(storyPaths);
     }
 }
