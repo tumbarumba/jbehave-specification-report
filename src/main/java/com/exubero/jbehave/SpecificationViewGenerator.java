@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-import static com.exubero.jbehave.SpecificationViewGenerator.StoryPathComparator.BY_TOP_LEVEL_THEN_PATH;
+import static com.exubero.jbehave.SpecificationViewGenerator.StoryPathComparator.BY_GROUP_THEN_PATH;
 
 public class SpecificationViewGenerator implements ViewGenerator {
     private final Keywords keywords;
@@ -79,7 +79,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
             return storyMaps.getMaps().stream()
                     .flatMap(storyMap -> storyMap.getStories().stream())
                     .map(StoryModel::new)
-                    .sorted(BY_TOP_LEVEL_THEN_PATH)
+                    .sorted(BY_GROUP_THEN_PATH)
                     .collect(Collectors.toList());
         }
 
@@ -111,6 +111,14 @@ public class SpecificationViewGenerator implements ViewGenerator {
 
         public String path() {
             return story.getPath();
+        }
+
+        public String group() {
+            if (isTopLevel()) {
+                return "";
+            }
+            String path = path();
+            return path.substring(0, path.lastIndexOf("/"));
         }
 
         public String pathId() {
@@ -153,19 +161,12 @@ public class SpecificationViewGenerator implements ViewGenerator {
     }
 
     static final class StoryPathComparator implements Comparator<StoryModel> {
-        public static final StoryPathComparator BY_TOP_LEVEL_THEN_PATH = new StoryPathComparator();
+        public static final StoryPathComparator BY_GROUP_THEN_PATH = new StoryPathComparator();
 
         @Override
         public int compare(StoryModel a, StoryModel b) {
-            boolean aTopLevel = !a.path().contains("/");
-            boolean bTopLevel = !b.path().contains("/");
-
-            if (aTopLevel && !bTopLevel) {
-                return -1;
-            } else if (bTopLevel && !aTopLevel) {
-                return 1;
-            }
-            return a.path().compareTo(b.path());
+            int result = a.group().compareTo(b.group());
+            return (result == 0) ? a.path().compareTo(b.path()) : result;
         }
     };
 
