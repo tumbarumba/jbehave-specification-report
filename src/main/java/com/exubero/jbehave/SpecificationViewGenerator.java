@@ -1,11 +1,12 @@
 package com.exubero.jbehave;
 
+import com.exubero.jbehave.StoryResultSet.ScenarioResult;
+import com.exubero.jbehave.StoryResultSet.StepResult;
+import com.exubero.jbehave.StoryResultSet.StoryResult;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import org.jbehave.core.configuration.Keywords;
-import org.jbehave.core.model.Scenario;
-import org.jbehave.core.model.Story;
 import org.jbehave.core.model.StoryMaps;
 import org.jbehave.core.reporters.ReportsCount;
 import org.jbehave.core.reporters.ViewGenerator;
@@ -16,10 +17,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -30,9 +28,11 @@ import java.util.stream.Collectors;
 import static com.exubero.jbehave.SpecificationViewGenerator.StoryPathComparator.BY_GROUP_THEN_PATH;
 
 public class SpecificationViewGenerator implements ViewGenerator {
+    private final StoryResultSet storyResultSet;
     private final Keywords keywords;
 
-    public SpecificationViewGenerator(Keywords keywords) {
+    public SpecificationViewGenerator(StoryResultSet storyResultSet, Keywords keywords) {
+        this.storyResultSet = storyResultSet;
         this.keywords = keywords;
     }
 
@@ -53,7 +53,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
 
     @Override
     public void generateReportsView(File outputDirectory, List<String> formats, Properties viewResources) {
-        throw new UnsupportedOperationException();
+        System.out.println("SpecificationViewGenerator.generateReportsView");
     }
 
     @Override
@@ -89,6 +89,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
         public List<StoryModel> stories() {
             return storyMaps.getMaps().stream()
                     .flatMap(storyMap -> storyMap.getStories().stream())
+                    .map(storyResultSet::resultFor)
                     .map(StoryModel::new)
                     .sorted(BY_GROUP_THEN_PATH)
                     .collect(Collectors.toList());
@@ -156,14 +157,14 @@ public class SpecificationViewGenerator implements ViewGenerator {
 
 
     public final class StoryModel {
-        private final Story story;
+        private final StoryResult storyResult;
 
-        public StoryModel(Story story) {
-            this.story = story;
+        public StoryModel(StoryResult storyResult) {
+            this.storyResult = storyResult;
         }
 
         public String name() {
-            return convertToTitle(story.getName());
+            return convertToTitle(storyResult.getStory().getName());
         }
 
         public boolean isTopLevel() {
@@ -179,7 +180,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
         }
 
         public String path() {
-            return story.getPath();
+            return storyResult.getStory().getPath();
         }
 
         public String group() {
@@ -195,15 +196,15 @@ public class SpecificationViewGenerator implements ViewGenerator {
         }
 
         public String description() {
-            return story.getDescription().asString();
+            return storyResult.getStory().getDescription().asString();
         }
 
         public String narrative() {
-            return story.getNarrative().asString(keywords).replaceAll("\n", "<br>");
+            return storyResult.getStory().getNarrative().asString(keywords).replaceAll("\n", "<br>");
         }
 
         public List<ScenarioModel> scenarios() {
-            return story.getScenarios().stream()
+            return storyResult.getScenarioResults().stream()
                     .map(ScenarioModel::new)
                     .collect(Collectors.toList());
         }
@@ -211,18 +212,38 @@ public class SpecificationViewGenerator implements ViewGenerator {
     }
 
     public final class ScenarioModel {
-        private final Scenario scenario;
+        private final ScenarioResult scenarioResult;
 
-        public ScenarioModel(Scenario scenario) {
-            this.scenario = scenario;
+        public ScenarioModel(ScenarioResult scenarioResult) {
+            this.scenarioResult = scenarioResult;
         }
 
         public String title() {
-            return scenario.getTitle();
+            return scenarioResult.getScenario().getTitle();
         }
 
-        public List<String> steps() {
-            return scenario.getSteps();
+        public List<StepModel> steps() {
+            return scenarioResult.getStepResults().stream().map(StepModel::new).collect(Collectors.toList());
+        }
+    }
+
+    public final class StepModel {
+        private final StepResult stepResult;
+
+        public StepModel(StepResult stepResult) {
+            this.stepResult = stepResult;
+        }
+
+        public String getStep() {
+            return stepResult.getStep();
+        }
+
+        public String getResult() {
+            return stepResult.getResult().toString();
+        }
+
+        public String getResultIcon() {
+            return "hand";
         }
     }
 
