@@ -39,14 +39,16 @@ public final class JBehaveEmbedder extends ConfigurableEmbedder {
             return super.configuration();
         }
 
-        return new MostUsefulConfiguration()
+        MostUsefulConfiguration mostUsefulConfiguration = new MostUsefulConfiguration();
+        return mostUsefulConfiguration
                 .useStoryReporterBuilder(new StoryReporterBuilder()
                         .withCodeLocation(codeLocation)
                         .withRelativeDirectory("../reports/jbehave")
                         .withDefaultFormats()
                         .withFormats(CONSOLE, XML)
+                        .withReporters(new SpecificationStoryReporter())
                         .withFailureTrace(true))
-                .useViewGenerator(new SpecificationViewGenerator());
+                .useViewGenerator(new SpecificationViewGenerator(mostUsefulConfiguration.keywords()));
     }
 
     private List<String> storyPaths() {
@@ -56,7 +58,7 @@ public final class JBehaveEmbedder extends ConfigurableEmbedder {
     @Override
     public void run() throws Throwable {
         List<String> storyPaths = storyPaths();
-        configuredEmbedder().runStoriesAsPaths(storyPaths);
+//        configuredEmbedder().runStoriesAsPaths(storyPaths);
         configuredEmbedder().mapStoriesAsPaths(storyPaths);
     }
 }

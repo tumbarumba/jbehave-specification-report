@@ -3,7 +3,8 @@ package com.exubero.jbehave;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
-import com.thoughtworks.xstream.XStream;
+import org.jbehave.core.configuration.Keywords;
+import org.jbehave.core.model.Scenario;
 import org.jbehave.core.model.Story;
 import org.jbehave.core.model.StoryMaps;
 import org.jbehave.core.reporters.ReportsCount;
@@ -14,24 +15,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.asList;
+import static com.exubero.jbehave.SpecificationViewGenerator.StoryPathComparator.BY_TOP_LEVEL_THEN_PATH;
 
 public class SpecificationViewGenerator implements ViewGenerator {
-    @Override
-    public void generateMapsView(File outputDirectory, StoryMaps storyMaps, Properties viewResources) {
-        System.out.println("generateMapsView");
+    private final Keywords keywords;
+
+    public SpecificationViewGenerator(Keywords keywords) {
+        this.keywords = keywords;
     }
 
     @Override
-    public void generateReportsView(File outputDirectory, List<String> formats, Properties viewResources) {
-        File[] xmlFiles = outputDirectory.listFiles((dir, name) -> name.endsWith(".xml"));
-        Arrays.stream(xmlFiles).forEach(xmlFile -> System.out.println(xmlFile.getAbsolutePath()));
-
-        ReportModel reportModel = new ReportModel(asList(xmlFiles));
+    public void generateMapsView(File outputDirectory, StoryMaps storyMaps, Properties viewResources) {
+        ReportModel reportModel = new ReportModel(storyMaps);
 
         File reportFile = new File(outputDirectory, "specification.html");
         try(Writer writer = new FileWriter(reportFile)) {
@@ -42,6 +42,11 @@ public class SpecificationViewGenerator implements ViewGenerator {
             throw new RuntimeException("Failed to write report " + reportFile.getAbsolutePath(), e);
         }
 
+    }
+
+    @Override
+    public void generateReportsView(File outputDirectory, List<String> formats, Properties viewResources) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -63,52 +68,101 @@ public class SpecificationViewGenerator implements ViewGenerator {
         return new Properties();
     }
 
-    public static final class ReportModel {
-        private final List<File> xmlStoryFiles;
+    public final class ReportModel {
+        private final StoryMaps storyMaps;
 
-        public ReportModel(List<File> xmlStoryFiles) {
-            this.xmlStoryFiles = xmlStoryFiles;
+        public ReportModel(StoryMaps storyMaps) {
+            this.storyMaps = storyMaps;
         }
 
-        public Iterable<StoryModel> stories() {
-            List<StoryModel> storyModels = xmlStoryFiles.stream()
-                    .map(StoryModel::fromXml)
+        public List<StoryModel> stories() {
+            return storyMaps.getMaps().stream()
+                    .flatMap(storyMap -> storyMap.getStories().stream())
+                    .map(StoryModel::new)
+                    .sorted(BY_TOP_LEVEL_THEN_PATH)
                     .collect(Collectors.toList());
-
-            return storyModels;
         }
 
     }
 
 
-    public static final class StoryModel {
-        private final File xmlFile;
-//        private final Story story;
+    public final class StoryModel {
+        private final Story story;
 
-        public StoryModel(File xmlFile) {
-            this.xmlFile = xmlFile;
-//            this.story = readStoryFrom(xmlFile);
+        public StoryModel(Story story) {
+            this.story = story;
         }
 
-//        private Story readStoryFrom(File xmlFile) {
-//            XStream xstream = new XStream();
-//            xstream.alias("story", Story.class);
-//
-//            Story story = (Story)xstream.fromXML(xmlFile);
-//            return story;
-//        }
-//
-        public static StoryModel fromXml(File xmlFile) {
-            return new StoryModel(xmlFile);
+        public String name() {
+            return convertToTitle(story.getName());
         }
 
-        public String file() throws IOException {
-            return xmlFile.getCanonicalPath();
+        public boolean isTopLevel() {
+            return !path().contains("/");
         }
 
-//        public String name() {
-//            return story.getName();
-//        }
+        public List<String> breadcrumbs() {
+            String[] pathParts = path().split("/");
+            return Arrays.stream(pathParts)
+                    .limit(pathParts.length - 1)
+                    .map(this::convertToTitle)
+                    .collect(Collectors.toList());
+        }
+
+        public String path() {
+            return story.getPath();
+        }
+
+        public String description() {
+            return story.getDescription().asString();
+        }
+
+        public String narrative() {
+            return story.getNarrative().asString(keywords).replaceAll("\n", "<br>");
+        }
+
+        public List<ScenarioModel> scenarios() {
+            return story.getScenarios().stream()
+                    .map(ScenarioModel::new)
+                    .collect(Collectors.toList());
+        }
+
+        private String convertToTitle(String pathComponent) {
+            return pathComponent.replace("_", " ").replace(".story", "");
+        }
     }
+
+    public final class ScenarioModel {
+        private final Scenario scenario;
+
+        public ScenarioModel(Scenario scenario) {
+            this.scenario = scenario;
+        }
+
+        public String title() {
+            return scenario.getTitle();
+        }
+
+        public List<String> steps() {
+            return scenario.getSteps();
+        }
+    }
+
+    static final class StoryPathComparator implements Comparator<StoryModel> {
+        public static final StoryPathComparator BY_TOP_LEVEL_THEN_PATH = new StoryPathComparator();
+
+        @Override
+        public int compare(StoryModel a, StoryModel b) {
+            boolean aTopLevel = !a.path().contains("/");
+            boolean bTopLevel = !b.path().contains("/");
+
+            if (aTopLevel && !bTopLevel) {
+                return -1;
+            } else if (bTopLevel && !aTopLevel) {
+                return 1;
+            }
+            return a.path().compareTo(b.path());
+        }
+    };
 
 }
