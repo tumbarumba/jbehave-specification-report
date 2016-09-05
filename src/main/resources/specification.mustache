@@ -5,11 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Report</title>
+    <title>Specifications</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style type="text/css">
+        body {
+            position: relative;
+        }
+        .story-group {
+            margin-bottom: 0;
+        }
+        .story-heading {
+            margin-top: 0;
+        }
         .panel-heading h3,
         .panel-heading h4 {
             margin: 0;
@@ -23,7 +32,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#navbar-col">
+<body data-spy="scroll" data-target="#side-nav" data-offset="0">
 <div class="container">
     <div class="row">
         <div class="col-md-9 col-md-offset-3">
@@ -32,8 +41,8 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <nav id="navbar-col" class="hidden-print hidden-sm hidden-xs affix">
-                <ul class="nav">
+            <nav id="side-nav" class="hidden-print hidden-sm hidden-xs" role="navigation">
+                <ul class="nav nav-pills nav-stacked affix">
                     {{#stories}}
                         <li><a href="#{{pathId}}">{{name}}</a></li>
                     {{/stories}}
@@ -43,14 +52,11 @@
         <div class="col-md-9">
             {{#stories}}
                 <hr>
-                <h2 id="{{pathId}}">{{name}}</h2>
+                <a name="{{pathId}}" id="{{pathId}}"></a>
                 {{^isTopLevel}}
-                    <ol class="breadcrumb">
-                        {{#breadcrumbs}}
-                            <li>{{.}}</li>
-                        {{/breadcrumbs}}
-                    </ol>
+                    <p class="story-group">{{#breadcrumbs}}<strong>{{.}}</strong> &raquo; {{/breadcrumbs}}</p>
                 {{/isTopLevel}}
+                <h2 class="story-heading">{{name}}</h2>
                 <p>{{description}}</p>
                 <div class="alert alert-info">
                     <p>{{{narrative}}}</p>

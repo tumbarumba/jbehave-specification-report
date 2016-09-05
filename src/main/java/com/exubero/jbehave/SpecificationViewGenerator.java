@@ -114,7 +114,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
         }
 
         public String pathId() {
-            return path().replaceAll("/", "_");
+            return path().replaceAll("/", "_").replace(".story", "");
         }
 
         public String description() {
