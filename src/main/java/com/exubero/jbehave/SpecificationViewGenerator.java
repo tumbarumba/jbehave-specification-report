@@ -35,13 +35,15 @@ public class SpecificationViewGenerator implements ViewGenerator {
         ReportModel reportModel = new ReportModel(storyResultSet, keywords);
 
         outputDirectory.mkdirs();
-        File reportFile = new File(outputDirectory, "specification.html");
-        try(Writer writer = new FileWriter(reportFile)) {
+        File specificationFile = new File(outputDirectory, "specification.html");
+        try(Writer writer = new FileWriter(specificationFile)) {
             MustacheFactory mustacheFactory = new DefaultMustacheFactory();
             Mustache mustache = mustacheFactory.compile("specification.mustache");
             mustache.execute(writer, reportModel);
+
+            System.out.println("Specification written to " + specificationFile.getCanonicalPath());
         } catch (IOException e) {
-            throw new RuntimeException("Failed to write report " + reportFile.getAbsolutePath(), e);
+            throw new RuntimeException("Failed to write report " + specificationFile.getAbsolutePath(), e);
         }
     }
 

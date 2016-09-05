@@ -11,13 +11,13 @@
         <p>{{{narrative}}}</p>
     </div>
     {{#scenarios}}
-        <div class="panel panel-success">
+        <div class="panel panel-{{summaryResult.bootstrapClass}}">
             <div class="panel-heading">
-                <h4>{{title}}</h4>
+                <h4><span class="glyphicon glyphicon-{{summaryResult.bootstrapIcon}}"></span>&nbsp;{{title}}</h4>
             </div>
             <div class="panel-body">
                 {{#steps}}
-                    <p class="step text-{{resultClass}}" title="{{result}}"><span class="glyphicon glyphicon-{{resultIcon}}"></span>&nbsp;{{step}}</p>
+                    <p class="step text-{{result.bootstrapClass}}" title="{{result.name}}"><span class="glyphicon glyphicon-{{result.bootstrapIcon}}"></span>&nbsp;{{step}}</p>
                 {{/steps}}
             </div>
         </div>
