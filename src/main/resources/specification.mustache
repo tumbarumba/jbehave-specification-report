@@ -26,6 +26,9 @@
         .step {
             margin: 0;
         }
+        #side-nav {
+            margin-top: 20px;
+        }
         #side-nav .nav li > a {
             border-left: 2px solid white;
         }
@@ -70,11 +73,6 @@
 <body data-spy="scroll" data-target="#side-nav" data-offset="0">
 <div class="container">
     <div class="row">
-        <div class="col-md-9 col-md-offset-3">
-            <h1>Specifications</h1>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-3">
             <nav id="side-nav" class="hidden-print hidden-sm hidden-xs affix" role="navigation">
                 {{#topLevelStoryGroup}}
@@ -83,6 +81,9 @@
             </nav>
         </div>
         <div class="col-md-9">
+            <div class="col-md-9 col-md-offset-3">
+                <h1>Specifications</h1>
+            </div>
             {{#topLevelStoryGroup}}
                 {{> group_stories }}
             {{/topLevelStoryGroup}}
