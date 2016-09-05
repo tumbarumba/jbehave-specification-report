@@ -14,10 +14,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import static com.exubero.jbehave.SpecificationViewGenerator.StoryPathComparator.BY_GROUP_THEN_PATH;
@@ -63,6 +70,10 @@ public class SpecificationViewGenerator implements ViewGenerator {
                 scenariosNotAllowed, scenariosPending, stepsFailed);
     }
 
+    static String convertToTitle(String pathComponent) {
+        return pathComponent.replace("_", " ").replace(".story", "");
+    }
+
     @Override
     public Properties defaultViewProperties() {
         return new Properties();
@@ -81,6 +92,64 @@ public class SpecificationViewGenerator implements ViewGenerator {
                     .map(StoryModel::new)
                     .sorted(BY_GROUP_THEN_PATH)
                     .collect(Collectors.toList());
+        }
+
+        public StoryGroup topLevelStoryGroup() {
+            Map<String, List<StoryModel>> allGroups = stories().stream().collect(Collectors.groupingBy(StoryModel::group));
+            StoryGroup topLevelGroup = new StoryGroup("");
+            allGroups.keySet().stream().sorted().forEach( groupPath -> {
+                topLevelGroup.addGroupStories(groupPath, allGroups.get(groupPath));
+            });
+
+            return topLevelGroup;
+        }
+
+    }
+
+    public final class StoryGroup {
+        private final String path;
+        private final List<StoryModel> stories;
+        private final SortedMap<String, StoryGroup> childGroups;
+
+        public StoryGroup(String path) {
+            this.path = path;
+            this.stories = new ArrayList<>();
+            this.childGroups = new TreeMap<>();
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        public String getTitle() {
+            return convertToTitle(path);
+        }
+
+        public List<StoryModel> getStories() {
+            return stories;
+        }
+
+        public List<StoryGroup> getChildGroups() {
+            return new ArrayList<>(childGroups.values());
+        }
+
+        public void addGroupStories(String groupPath, List<StoryModel> storyModels) {
+            if (groupPath.isEmpty()) {
+                stories.addAll(storyModels);
+                return;
+            }
+
+            int nextSlashIndex = groupPath.indexOf("/");
+            if (nextSlashIndex >= 0) {
+                String nextGroupName = groupPath.substring(0, nextSlashIndex);
+                String remainingGroups = groupPath.substring(nextSlashIndex + 1, groupPath.length());
+                StoryGroup nextGroup = childGroups.computeIfAbsent(nextGroupName, StoryGroup::new);
+                nextGroup.addGroupStories(remainingGroups, storyModels);
+                return;
+            }
+
+            StoryGroup group = childGroups.computeIfAbsent(groupPath, StoryGroup::new);
+            group.addGroupStories("", storyModels);
         }
 
     }
@@ -105,7 +174,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
             String[] pathParts = path().split("/");
             return Arrays.stream(pathParts)
                     .limit(pathParts.length - 1)
-                    .map(this::convertToTitle)
+                    .map(SpecificationViewGenerator::convertToTitle)
                     .collect(Collectors.toList());
         }
 
@@ -139,9 +208,6 @@ public class SpecificationViewGenerator implements ViewGenerator {
                     .collect(Collectors.toList());
         }
 
-        private String convertToTitle(String pathComponent) {
-            return pathComponent.replace("_", " ").replace(".story", "");
-        }
     }
 
     public final class ScenarioModel {

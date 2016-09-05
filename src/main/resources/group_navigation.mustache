@@ -1,0 +1,10 @@
+<ul class="nav">
+    {{#stories}}
+        <li><a href="#{{pathId}}">{{name}}</a></li>
+    {{/stories}}
+    {{#childGroups}}
+        <li><a href="#{{path}}">{{title}}</a>
+            {{> group_navigation }}
+        </li>
+    {{/childGroups}}
+</ul>

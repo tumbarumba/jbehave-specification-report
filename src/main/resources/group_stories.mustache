@@ -1,0 +1,28 @@
+<a name="{{path}}" id="{{path}}"></a>
+{{#stories}}
+    <hr>
+    <a name="{{pathId}}" id="{{pathId}}"></a>
+    {{^isTopLevel}}
+        <p class="story-group">{{#breadcrumbs}}<strong>{{.}}</strong> &raquo; {{/breadcrumbs}}</p>
+    {{/isTopLevel}}
+    <h2 class="story-heading">{{name}}</h2>
+    <p>{{description}}</p>
+    <div class="alert alert-info">
+        <p>{{{narrative}}}</p>
+    </div>
+    {{#scenarios}}
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4>{{title}}</h4>
+            </div>
+            <div class="panel-body">
+                {{#steps}}
+                    {{.}}<br>
+                {{/steps}}
+            </div>
+        </div>
+    {{/scenarios}}
+{{/stories}}
+{{#childGroups}}
+    {{> group_stories }}
+{{/childGroups}}

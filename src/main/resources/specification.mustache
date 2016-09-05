@@ -23,6 +23,26 @@
         .panel-heading h4 {
             margin: 0;
         }
+        #side-nav .nav li > a {
+            border-left: 2px solid white;
+        }
+        #side-nav .nav li.active > a {
+            border-left: 2px solid #563d7c;
+        }
+        #side-nav .nav > li > a {
+            padding-left: 18px;
+        }
+        #side-nav .nav > li.active > a {
+            color: #563d7c;
+            font-weight: bold;
+        }
+        #side-nav .nav .nav > li > a {
+            padding: 5px 5px 5px 28px;
+            font-size: smaller;
+        }
+        #side-nav .nav .nav .nav > li > a {
+            padding-left: 38px;
+        }
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -41,39 +61,16 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <nav id="side-nav" class="hidden-print hidden-sm hidden-xs" role="navigation">
-                <ul class="nav nav-pills nav-stacked affix">
-                    {{#stories}}
-                        <li><a href="#{{pathId}}">{{name}}</a></li>
-                    {{/stories}}
-                </ul>
+            <nav id="side-nav" class="hidden-print hidden-sm hidden-xs affix" role="navigation">
+                {{#topLevelStoryGroup}}
+                    {{> group_navigation }}
+                {{/topLevelStoryGroup}}
             </nav>
         </div>
         <div class="col-md-9">
-            {{#stories}}
-                <hr>
-                <a name="{{pathId}}" id="{{pathId}}"></a>
-                {{^isTopLevel}}
-                    <p class="story-group">{{#breadcrumbs}}<strong>{{.}}</strong> &raquo; {{/breadcrumbs}}</p>
-                {{/isTopLevel}}
-                <h2 class="story-heading">{{name}}</h2>
-                <p>{{description}}</p>
-                <div class="alert alert-info">
-                    <p>{{{narrative}}}</p>
-                </div>
-                {{#scenarios}}
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h4>{{title}}</h4>
-                        </div>
-                        <div class="panel-body">
-                            {{#steps}}
-                                {{.}}<br>
-                            {{/steps}}
-                        </div>
-                    </div>
-                {{/scenarios}}
-            {{/stories}}
+            {{#topLevelStoryGroup}}
+                {{> group_stories }}
+            {{/topLevelStoryGroup}}
         </div>
     </div>
 </div>
