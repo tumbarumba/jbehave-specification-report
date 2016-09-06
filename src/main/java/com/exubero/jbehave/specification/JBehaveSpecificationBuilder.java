@@ -11,6 +11,7 @@ import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.ProvidedStepsFactory;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ import static org.jbehave.core.reporters.Format.XML;
 
 public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {
     private final URL codeLocation;
+    private final List<String> customStoryPaths = new ArrayList<>();
 
     private JBehaveSpecificationBuilder(Object... steps) {
         Objects.requireNonNull(steps);
@@ -32,6 +34,16 @@ public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {
 
     public static JBehaveSpecificationBuilder aSpecificationBuilderWithSteps(Object... steps) {
         return new JBehaveSpecificationBuilder(steps);
+    }
+
+    public JBehaveSpecificationBuilder withStoryPath(String storyPath) {
+        this.customStoryPaths.add(storyPath);
+        return this;
+    }
+
+    public JBehaveSpecificationBuilder withStoryPaths(List<String> storyPaths) {
+        this.customStoryPaths.addAll(storyPaths);
+        return this;
     }
 
     @Override
@@ -54,8 +66,12 @@ public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {
                 .useViewGenerator(new SpecificationViewGenerator(storyResultSet, mostUsefulConfiguration.keywords()));
     }
 
-    private List<String> storyPaths() {
+    private List<String> defaultStoryPaths() {
         return new StoryFinder().findPaths(codeLocation, "**/*.story", null);
+    }
+
+    private List<String> storyPaths() {
+        return customStoryPaths.isEmpty() ? defaultStoryPaths() : customStoryPaths;
     }
 
     @Override
@@ -63,4 +79,5 @@ public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {
         List<String> storyPaths = storyPaths();
         configuredEmbedder().runStoriesAsPaths(storyPaths);
     }
+
 }

@@ -9,6 +9,9 @@ public class BuildSpecification {
 
     @Test
     public void verifyStoriesAndWriteSpecification() throws Throwable {
-        aSpecificationBuilderWithSteps(storySteps).run();
+        aSpecificationBuilderWithSteps(storySteps)
+//                .withStoryPath("Top_Level.story")
+//                .withStoryPath("First_Category/Amazing_Capability.story")
+                .run();
     }
 }
