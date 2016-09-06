@@ -17,7 +17,10 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Properties;
 
+import static com.exubero.jbehave.specification.model.ReportModel.TITLE_PROP;
+
 public class SpecificationViewGenerator implements ViewGenerator {
+
     private final StoryResultSet storyResultSet;
     private final Keywords keywords;
 
@@ -33,7 +36,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
 
     @Override
     public void generateReportsView(File outputDirectory, List<String> formats, Properties viewResources) {
-        ReportModel reportModel = new ReportModel(storyResultSet, keywords);
+        ReportModel reportModel = new ReportModel(storyResultSet, keywords, viewResources);
 
         outputDirectory.mkdirs();
         File specificationFile = new File(outputDirectory, "specification.html");
@@ -64,7 +67,9 @@ public class SpecificationViewGenerator implements ViewGenerator {
 
     @Override
     public Properties defaultViewProperties() {
-        return new Properties();
+        Properties properties = new Properties();
+        properties.setProperty(TITLE_PROP, "Specifications");
+        return properties;
     }
 
 

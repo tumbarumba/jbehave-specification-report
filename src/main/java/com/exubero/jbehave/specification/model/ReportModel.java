@@ -5,17 +5,25 @@ import org.jbehave.core.configuration.Keywords;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 public final class ReportModel {
-    private static final StoryPathComparator BY_GROUP_THEN_PATH = new StoryPathComparator();
+    public final static String TITLE_PROP = "title";
+    private final static StoryPathComparator BY_GROUP_THEN_PATH = new StoryPathComparator();
 
     private final StoryResultSet storyResultSet;
     private final Keywords keywords;
+    private final Properties viewResources;
 
-    public ReportModel(StoryResultSet storyResultSet, Keywords keywords) {
+    public ReportModel(StoryResultSet storyResultSet, Keywords keywords, Properties viewResources) {
         this.storyResultSet = storyResultSet;
         this.keywords = keywords;
+        this.viewResources = viewResources;
+    }
+
+    public String title() {
+        return viewResources.getProperty(TITLE_PROP, "Specifications");
     }
 
     public List<StoryModel> stories() {
