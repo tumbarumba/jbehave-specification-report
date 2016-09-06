@@ -25,15 +25,15 @@ import static org.jbehave.core.reporters.Format.XML;
 public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {
     private final URL codeLocation;
     private final List<String> customStoryPaths = new ArrayList<>();
+    private final Object[] steps;
     private String specificationTitle;
 
     private JBehaveSpecificationBuilder(Object... steps) {
         Objects.requireNonNull(steps);
         Objects.requireNonNull(steps[0]);
 
+        this.steps = steps;
         this.codeLocation = codeLocationFromClass(steps[0].getClass());
-        List<CandidateSteps> candidateSteps = new InstanceStepsFactory(configuration(), steps).createCandidateSteps();
-        useStepsFactory(new ProvidedStepsFactory(candidateSteps));
     }
 
     public static JBehaveSpecificationBuilder aSpecificationBuilderWithSteps(Object... steps) {
@@ -94,6 +94,9 @@ public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {
 
     @Override
     public void run() throws Throwable {
+        List<CandidateSteps> candidateSteps = new InstanceStepsFactory(configuration(), steps).createCandidateSteps();
+        useStepsFactory(new ProvidedStepsFactory(candidateSteps));
+
         configuredEmbedder().runStoriesAsPaths(storyPaths());
     }
 
