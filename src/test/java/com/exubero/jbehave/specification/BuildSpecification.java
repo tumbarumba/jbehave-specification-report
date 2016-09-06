@@ -11,7 +11,7 @@ public class BuildSpecification {
     public void verifyStoriesAndWriteSpecification() throws Throwable {
         aSpecificationBuilderWithSteps(storySteps)
                 .withSpecificationTitle("Example Specifications")
-//                .withStoryPath("Top_Level.story")
+//                .withStoryPath("A_High_Level_Feature.story")
 //                .withStoryPath("First_Category/Amazing_Capability.story")
                 .run();
     }

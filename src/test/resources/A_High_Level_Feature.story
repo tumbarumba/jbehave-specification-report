@@ -1,4 +1,4 @@
-This is a description of the top level story.
+This is a description of a high level feature.
 
 Meta:
 

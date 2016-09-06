@@ -20,6 +20,8 @@ import java.util.Properties;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
+import static org.jbehave.core.reporters.Format.HTML;
+import static org.jbehave.core.reporters.Format.HTML_TEMPLATE;
 import static org.jbehave.core.reporters.Format.XML;
 
 public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {
