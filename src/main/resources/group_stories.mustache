@@ -19,39 +19,39 @@
                 {{#steps}}
                     <p class="step text-{{result.bootstrapClass}}" title="{{result.name}}"><span class="glyphicon glyphicon-{{result.bootstrapIcon}}"></span>&nbsp;{{{step}}}</p>
                 {{/steps}}
-                {{#hasExamples}}
-                    {{#examplesTable}}
-                        <table class="table table-striped table-condensed table-hover examples-table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    {{#headers}}
-                                        <th>{{.}}</th>
-                                    {{/headers}}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#examples}}
-                                    <tr class="{{summaryResult.bootstrapClass}}">
-                                        <td><a href="#{{stepsId}}" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{{stepsId}}"><span class="glyphicon glyphicon-{{summaryResult.bootstrapIcon}}"></span></a></td>
-                                        {{#values}}
-                                            <td>{{.}}</td>
-                                        {{/values}}
-                                    </tr>
-                                    <tr id="{{stepsId}}" class="collapse example-steps {{summaryResult.bootstrapClass}}">
-                                        <td></td>
-                                        <td colspan="3">
-                                            {{#steps}}
-                                                <span class="glyphicon glyphicon-{{result.bootstrapIcon}}"></span>&nbsp;{{{step}}}<br>
-                                            {{/steps}}
-                                        </td>
-                                    </tr>
-                                {{/examples}}
-                            </tbody>
-                        </table>
-                    {{/examplesTable}}
-                {{/hasExamples}}
             </div>
+            {{#hasExamples}}
+                {{#examplesTable}}
+                    <table class="table table-striped table-condensed table-hover examples-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            {{#headers}}
+                                <th>{{.}}</th>
+                            {{/headers}}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#examples}}
+                            <tr class="{{summaryResult.bootstrapClass}}">
+                                <td><a href="#{{stepsId}}" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{{stepsId}}"><span class="glyphicon glyphicon-{{summaryResult.bootstrapIcon}}"></span></a></td>
+                                {{#values}}
+                                    <td>{{.}}</td>
+                                {{/values}}
+                            </tr>
+                            <tr id="{{stepsId}}" class="collapse example-steps {{summaryResult.bootstrapClass}}">
+                                <td></td>
+                                <td colspan="3">
+                                    {{#steps}}
+                                        <span class="glyphicon glyphicon-{{result.bootstrapIcon}}"></span>&nbsp;{{{step}}}<br>
+                                    {{/steps}}
+                                </td>
+                            </tr>
+                        {{/examples}}
+                        </tbody>
+                    </table>
+                {{/examplesTable}}
+            {{/hasExamples}}
         </div>
     {{/scenarios}}
 {{/stories}}
