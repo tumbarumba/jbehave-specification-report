@@ -27,4 +27,12 @@ public final class ScenarioModel {
     public List<StepModel> steps() {
         return scenarioResult.getStepResults().stream().map(StepModel::new).collect(Collectors.toList());
     }
+
+    public boolean hasExamples() {
+        return scenarioResult.hasExamples();
+    }
+
+    public ExamplesTableModel examplesTable() {
+        return new ExamplesTableModel(scenarioResult.getExamplesTableResult());
+    }
 }

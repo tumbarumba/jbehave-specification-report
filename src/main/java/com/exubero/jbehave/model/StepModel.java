@@ -13,6 +13,8 @@ public final class StepModel {
 
     public String getStep() {
         return stepResult.getStep()
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
                 .replace("｟", "<strong>")
                 .replace("｠", "</strong>");
     }

@@ -1,5 +1,7 @@
 package com.exubero.jbehave;
 
+import com.exubero.jbehave.model.ExampleResult;
+import com.exubero.jbehave.model.ExamplesTableResult;
 import com.exubero.jbehave.model.StoryResultSet;
 import com.exubero.jbehave.model.Result;
 import com.exubero.jbehave.model.ScenarioResult;
@@ -25,6 +27,8 @@ public class SpecificationStoryReporter implements StoryReporter {
 
     private StoryResult currentStory = null;
     private ScenarioResult currentScenario = null;
+    private ExamplesTableResult currentExamplesTableResult = null;
+    private ExampleResult currentExampleResult = null;
 
     public SpecificationStoryReporter(StoryResultSet storyResultSet) {
         this.storyResultSet = storyResultSet;
@@ -87,14 +91,23 @@ public class SpecificationStoryReporter implements StoryReporter {
 
     @Override
     public void beforeExamples(List<String> steps, ExamplesTable table) {
+        currentExamplesTableResult = new ExamplesTableResult(table);
+        steps.forEach(step -> {
+            currentScenario.addStepResult(new StepResult(step, Result.IGNORABLE));
+        });
     }
 
     @Override
     public void example(Map<String, String> tableRow) {
+        currentExampleResult = new ExampleResult(currentExamplesTableResult.getHeaders(), tableRow);
+        currentExamplesTableResult.addExampleResult(currentExampleResult);
     }
 
     @Override
     public void afterExamples() {
+        currentScenario.addExamplesTableResult(currentExamplesTableResult);
+        currentExamplesTableResult = null;
+        currentExampleResult = null;
     }
 
     @Override
@@ -103,27 +116,27 @@ public class SpecificationStoryReporter implements StoryReporter {
 
     @Override
     public void successful(String step) {
-        currentScenario.addStepResult(new StepResult(step, Result.SUCCESSFUL));
+        saveStepResult(new StepResult(step, Result.SUCCESSFUL));
     }
 
     @Override
     public void ignorable(String step) {
-        currentScenario.addStepResult(new StepResult(step, Result.IGNORABLE));
+        saveStepResult(new StepResult(step, Result.IGNORABLE));
     }
 
     @Override
     public void pending(String step) {
-        currentScenario.addStepResult(new StepResult(step, Result.PENDING));
+        saveStepResult(new StepResult(step, Result.PENDING));
     }
 
     @Override
     public void notPerformed(String step) {
-        currentScenario.addStepResult(new StepResult(step, Result.NOT_PERFORMED));
+        saveStepResult(new StepResult(step, Result.NOT_PERFORMED));
     }
 
     @Override
     public void failed(String step, Throwable cause) {
-        currentScenario.addStepResult(new StepResult(step, Result.FAILED));
+        saveStepResult(new StepResult(step, Result.FAILED));
     }
 
     @Override
@@ -136,6 +149,14 @@ public class SpecificationStoryReporter implements StoryReporter {
 
     @Override
     public void restartedStory(Story story, Throwable cause) {
+    }
+
+    private void saveStepResult(StepResult stepResult) {
+        if (currentExampleResult == null) {
+            currentScenario.addStepResult(stepResult);
+        } else {
+            currentExampleResult.addStepResult(stepResult);
+        }
     }
 
     @Override

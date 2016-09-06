@@ -19,6 +19,28 @@
                 {{#steps}}
                     <p class="step text-{{result.bootstrapClass}}" title="{{result.name}}"><span class="glyphicon glyphicon-{{result.bootstrapIcon}}"></span>&nbsp;{{{step}}}</p>
                 {{/steps}}
+                {{#hasExamples}}
+                    {{#examplesTable}}
+                        <table class="table table-striped table-condensed table-hover examples-table">
+                            <thead>
+                                <tr>
+                                    {{#headers}}
+                                        <th>{{.}}</th>
+                                    {{/headers}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#rows}}
+                                    <tr class="result.bootstrapClass">
+                                        {{#cells}}
+                                            <td>{{.}}</td>
+                                        {{/cells}}
+                                    </tr>
+                                {{/rows}}
+                            </tbody>
+                        </table>
+                    {{/examplesTable}}
+                {{/hasExamples}}
             </div>
         </div>
     {{/scenarios}}
