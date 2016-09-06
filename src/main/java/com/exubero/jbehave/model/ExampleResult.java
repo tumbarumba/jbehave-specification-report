@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.exubero.jbehave.model.Result.SUCCESSFUL;
+
 public class ExampleResult {
     private final List<String> headerRow;
     private final Map<String, String> tableRow;
@@ -21,5 +23,11 @@ public class ExampleResult {
 
     public List<String> getValues() {
         return headerRow.stream().map(header -> tableRow.get(header)).collect(Collectors.toList());
+    }
+
+    public Result getSummaryResult() {
+        return stepResults.stream()
+                .map(StepResult::getResult)
+                .reduce(SUCCESSFUL, (a, n) -> n.getPriority() > a.getPriority() ? n : a);
     }
 }

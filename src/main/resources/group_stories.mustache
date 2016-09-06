@@ -24,19 +24,21 @@
                         <table class="table table-striped table-condensed table-hover examples-table">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     {{#headers}}
                                         <th>{{.}}</th>
                                     {{/headers}}
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#rows}}
-                                    <tr class="result.bootstrapClass">
-                                        {{#cells}}
+                                {{#examples}}
+                                    <tr class="{{summaryResult.bootstrapClass}}">
+                                        <td><span class="glyphicon glyphicon-{{summaryResult.bootstrapIcon}}"></span></td>
+                                        {{#values}}
                                             <td>{{.}}</td>
-                                        {{/cells}}
+                                        {{/values}}
                                     </tr>
-                                {{/rows}}
+                                {{/examples}}
                             </tbody>
                         </table>
                     {{/examplesTable}}

@@ -14,7 +14,7 @@ public class ExamplesTableModel {
         return examplesTableResult.getHeaders();
     }
 
-    public List<ExampleModel> getRows() {
+    public List<ExampleModel> getExamples() {
         return examplesTableResult.getExampleResults().stream().map(ExampleModel::new).collect(Collectors.toList());
     }
 }

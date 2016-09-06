@@ -27,8 +27,8 @@ public class SpecificationStoryReporter implements StoryReporter {
 
     private StoryResult currentStory = null;
     private ScenarioResult currentScenario = null;
-    private ExamplesTableResult currentExamplesTableResult = null;
-    private ExampleResult currentExampleResult = null;
+    private ExamplesTableResult currentExamplesTable = null;
+    private ExampleResult currentExample = null;
 
     public SpecificationStoryReporter(StoryResultSet storyResultSet) {
         this.storyResultSet = storyResultSet;
@@ -91,7 +91,7 @@ public class SpecificationStoryReporter implements StoryReporter {
 
     @Override
     public void beforeExamples(List<String> steps, ExamplesTable table) {
-        currentExamplesTableResult = new ExamplesTableResult(table);
+        currentExamplesTable = new ExamplesTableResult(table);
         steps.forEach(step -> {
             currentScenario.addStepResult(new StepResult(step, Result.IGNORABLE));
         });
@@ -99,15 +99,15 @@ public class SpecificationStoryReporter implements StoryReporter {
 
     @Override
     public void example(Map<String, String> tableRow) {
-        currentExampleResult = new ExampleResult(currentExamplesTableResult.getHeaders(), tableRow);
-        currentExamplesTableResult.addExampleResult(currentExampleResult);
+        currentExample = new ExampleResult(currentExamplesTable.getHeaders(), tableRow);
+        currentExamplesTable.addExampleResult(currentExample);
     }
 
     @Override
     public void afterExamples() {
-        currentScenario.addExamplesTableResult(currentExamplesTableResult);
-        currentExamplesTableResult = null;
-        currentExampleResult = null;
+        currentScenario.addExamplesTableResult(currentExamplesTable);
+        currentExamplesTable = null;
+        currentExample = null;
     }
 
     @Override
@@ -152,10 +152,10 @@ public class SpecificationStoryReporter implements StoryReporter {
     }
 
     private void saveStepResult(StepResult stepResult) {
-        if (currentExampleResult == null) {
+        if (currentExample == null) {
             currentScenario.addStepResult(stepResult);
         } else {
-            currentExampleResult.addStepResult(stepResult);
+            currentExample.addStepResult(stepResult);
         }
     }
 

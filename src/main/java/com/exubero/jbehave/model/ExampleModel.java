@@ -9,7 +9,7 @@ public class ExampleModel {
         this.exampleResult = exampleResult;
     }
 
-    public List<String> getCells() {
+    public List<String> getValues() {
         return exampleResult.getValues();
     }
 }
