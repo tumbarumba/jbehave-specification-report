@@ -1,9 +1,10 @@
 package com.exubero.jbehave;
 
-import com.exubero.jbehave.StoryResultSet.Result;
-import com.exubero.jbehave.StoryResultSet.ScenarioResult;
-import com.exubero.jbehave.StoryResultSet.StepResult;
-import com.exubero.jbehave.StoryResultSet.StoryResult;
+import com.exubero.jbehave.model.StoryResultSet;
+import com.exubero.jbehave.model.Result;
+import com.exubero.jbehave.model.ScenarioResult;
+import com.exubero.jbehave.model.StepResult;
+import com.exubero.jbehave.model.StoryResult;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.core.model.GivenStories;
 import org.jbehave.core.model.Lifecycle;

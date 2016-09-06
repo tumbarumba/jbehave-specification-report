@@ -1,7 +1,5 @@
 package com.exubero.jbehave.model;
 
-import com.exubero.jbehave.StoryResultSet.StepResult;
-
 public final class StepModel {
     private final StepResult stepResult;
 
@@ -14,7 +12,9 @@ public final class StepModel {
     }
 
     public String getStep() {
-        return stepResult.getStep();
+        return stepResult.getStep()
+                .replace("｟", "<strong>")
+                .replace("｠", "</strong>");
     }
 
     public ResultModel getResult() {

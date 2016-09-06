@@ -1,6 +1,5 @@
 package com.exubero.jbehave.model;
 
-import com.exubero.jbehave.StoryResultSet;
 import org.jbehave.core.configuration.Keywords;
 
 import java.util.Comparator;

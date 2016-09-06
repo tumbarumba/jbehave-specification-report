@@ -1,13 +1,9 @@
 package com.exubero.jbehave.model;
 
-import com.exubero.jbehave.StoryResultSet.Result;
-import com.exubero.jbehave.StoryResultSet.ScenarioResult;
-import com.exubero.jbehave.StoryResultSet.StepResult;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.exubero.jbehave.StoryResultSet.Result.SUCCESSFUL;
+import static com.exubero.jbehave.model.Result.SUCCESSFUL;
 
 public final class ScenarioModel {
     private final ScenarioResult scenarioResult;

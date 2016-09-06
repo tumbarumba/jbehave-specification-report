@@ -16,3 +16,14 @@ Scenario: Second Scenario
 Given a system state
 When I do something
 Then system is in a different state
+
+Scenario: Third Scenario with Examples
+Given system is <old state>
+When I perform <action>
+Then system should be <new state>
+
+Examples:
+|old state |action         |new state   |
+|flapping  |pull plug      |falling     |
+|proud     |gesture rudely |embarrassed |
+|crying    |hug            |happy       |

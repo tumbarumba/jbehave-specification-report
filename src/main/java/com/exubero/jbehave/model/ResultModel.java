@@ -1,7 +1,5 @@
 package com.exubero.jbehave.model;
 
-import com.exubero.jbehave.StoryResultSet.Result;
-
 public class ResultModel {
     private final Result result;
 

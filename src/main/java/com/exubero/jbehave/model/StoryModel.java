@@ -1,6 +1,5 @@
 package com.exubero.jbehave.model;
 
-import com.exubero.jbehave.StoryResultSet;
 import org.jbehave.core.configuration.Keywords;
 
 import java.util.Arrays;
@@ -10,10 +9,10 @@ import java.util.stream.Collectors;
 import static com.exubero.jbehave.model.TitleConverter.convertToTitle;
 
 public final class StoryModel {
-    private final StoryResultSet.StoryResult storyResult;
+    private final StoryResult storyResult;
     private final Keywords keywords;
 
-    public StoryModel(StoryResultSet.StoryResult storyResult, Keywords keywords) {
+    public StoryModel(StoryResult storyResult, Keywords keywords) {
         this.storyResult = storyResult;
         this.keywords = keywords;
     }

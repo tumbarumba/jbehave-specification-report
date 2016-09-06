@@ -11,8 +11,16 @@ public class StorySteps {
     public void givenASystemState() {
     }
 
+    @Given("system is $state")
+    public void givenSystemIsState(String state){
+    }
+
+    @When("I perform $action")
+    public void whenIPerformAction(String action) {
+    }
+
     @When("I do something")
-    public void whenIDoSomething() {
+    public void whenIDoSmething() {
     }
 
     @When("I do something pending")
@@ -22,6 +30,13 @@ public class StorySteps {
 
     @Then("system is in a different state")
     public void thenSystemIsInADifferentState() {
+    }
+
+    @Then("system should be $expectec")
+    public void thenSystemShouldBe(String expected) {
+        if(expected.contains("falling")) {
+            Assert.fail(expected);
+        }
     }
 
     @Then("we're not ready to check this yet")
