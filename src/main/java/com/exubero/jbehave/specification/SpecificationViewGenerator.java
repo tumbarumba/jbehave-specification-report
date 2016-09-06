@@ -53,16 +53,7 @@ public class SpecificationViewGenerator implements ViewGenerator {
 
     @Override
     public ReportsCount getReportsCount() {
-        int stories = 0;
-        int storiesNotAllowed = 0;
-        int storiesPending = 0;
-        int scenarios = 0;
-        int scenariosFailed = 0;
-        int scenariosNotAllowed = 0;
-        int scenariosPending = 0;
-        int stepsFailed = 0;
-        return new ReportsCount(stories, storiesNotAllowed, storiesPending, scenarios, scenariosFailed,
-                scenariosNotAllowed, scenariosPending, stepsFailed);
+        return storyResultSet.reportsCount();
     }
 
     @Override
