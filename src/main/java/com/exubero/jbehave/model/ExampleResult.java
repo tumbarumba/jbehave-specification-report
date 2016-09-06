@@ -30,4 +30,8 @@ public class ExampleResult {
                 .map(StepResult::getResult)
                 .reduce(SUCCESSFUL, (a, n) -> n.getPriority() > a.getPriority() ? n : a);
     }
+
+    public List<StepResult> getSteps() {
+        return stepResults;
+    }
 }

@@ -33,10 +33,18 @@
                             <tbody>
                                 {{#examples}}
                                     <tr class="{{summaryResult.bootstrapClass}}">
-                                        <td><span class="glyphicon glyphicon-{{summaryResult.bootstrapIcon}}"></span></td>
+                                        <td><a href="#{{stepsId}}" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{{stepsId}}"><span class="glyphicon glyphicon-{{summaryResult.bootstrapIcon}}"></span></a></td>
                                         {{#values}}
                                             <td>{{.}}</td>
                                         {{/values}}
+                                    </tr>
+                                    <tr id="{{stepsId}}" class="collapse example-steps {{summaryResult.bootstrapClass}}">
+                                        <td></td>
+                                        <td colspan="3">
+                                            {{#steps}}
+                                                <span class="glyphicon glyphicon-{{result.bootstrapIcon}}"></span>&nbsp;{{{step}}}<br>
+                                            {{/steps}}
+                                        </td>
                                     </tr>
                                 {{/examples}}
                             </tbody>
