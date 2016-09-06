@@ -1,6 +1,7 @@
 package com.exubero.jbehave;
 
 import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Pending;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -12,11 +13,11 @@ public class StorySteps {
     }
 
     @Given("system is $state")
-    public void givenSystemIsState(String state){
+    public void givenSystemIsState(@Named("state") String state){
     }
 
     @When("I perform $action")
-    public void whenIPerformAction(String action) {
+    public void whenIPerformAction(@Named("action") String action) {
     }
 
     @When("I do something")
@@ -32,8 +33,8 @@ public class StorySteps {
     public void thenSystemIsInADifferentState() {
     }
 
-    @Then("system should be $expectec")
-    public void thenSystemShouldBe(String expected) {
+    @Then("system should be $expected")
+    public void thenSystemShouldBe(@Named("expected") String expected) {
         if(expected.contains("falling")) {
             Assert.fail(expected);
         }

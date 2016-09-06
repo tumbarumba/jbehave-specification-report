@@ -11,7 +11,24 @@ public final class ScenarioModel {
 
     public ScenarioModel(ScenarioResult scenarioResult) {
         this.scenarioResult = scenarioResult;
-        this.summaryResult = scenarioResult.getStepResults().stream()
+        this.summaryResult = reduceChildResults(scenarioResult);
+    }
+
+    private Result reduceChildResults(ScenarioResult scenarioResult) {
+        if (scenarioResult.hasExamples()) {
+            return reduceExampleResults(scenarioResult.getExamplesTableResult());
+        }
+        return reduceStepResults(scenarioResult.getStepResults());
+    }
+
+    private Result reduceExampleResults(ExamplesTableResult examplesTableResult) {
+        return examplesTableResult.getExampleResults().stream()
+                .map(ExampleResult::getSummaryResult)
+                .reduce(SUCCESSFUL, (a, n) -> n.getPriority() > a.getPriority() ? n : a);
+    }
+
+    private Result reduceStepResults(List<StepResult> stepResults) {
+        return stepResults.stream()
                 .map(StepResult::getResult)
                 .reduce(SUCCESSFUL, (a, n) -> n.getPriority() > a.getPriority() ? n : a);
     }

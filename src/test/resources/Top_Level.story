@@ -18,12 +18,12 @@ When I do something
 Then system is in a different state
 
 Scenario: Third Scenario with Examples
-Given system is <old state>
+Given system is <old_state>
 When I perform <action>
-Then system should be <new state>
+Then system should be <new_state>
 
 Examples:
-|old state |action         |new state   |
+|old_state |action         |new_state   |
 |flapping  |pull plug      |falling     |
 |proud     |gesture rudely |embarrassed |
 |crying    |hug            |happy       |

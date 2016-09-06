@@ -12,4 +12,8 @@ public class ExampleModel {
     public List<String> getValues() {
         return exampleResult.getValues();
     }
+
+    public ResultModel getSummaryResult() {
+        return new ResultModel(exampleResult.getSummaryResult());
+    }
 }
