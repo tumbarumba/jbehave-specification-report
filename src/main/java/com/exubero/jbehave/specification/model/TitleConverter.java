@@ -1,4 +1,4 @@
-package com.exubero.jbehave.model;
+package com.exubero.jbehave.specification.model;
 
 public final class TitleConverter {
     public static String convertToTitle(String pathComponent) {

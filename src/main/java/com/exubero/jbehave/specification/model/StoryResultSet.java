@@ -1,4 +1,4 @@
-package com.exubero.jbehave.model;
+package com.exubero.jbehave.specification.model;
 
 import java.util.Collection;
 import java.util.HashMap;

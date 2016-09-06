@@ -1,4 +1,4 @@
-package com.exubero.jbehave.model;
+package com.exubero.jbehave.specification.model;
 
 public class ResultModel {
     private final Result result;

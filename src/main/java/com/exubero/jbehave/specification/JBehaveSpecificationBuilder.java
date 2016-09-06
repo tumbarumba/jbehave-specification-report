@@ -1,6 +1,6 @@
-package com.exubero.jbehave;
+package com.exubero.jbehave.specification;
 
-import com.exubero.jbehave.model.StoryResultSet;
+import com.exubero.jbehave.specification.model.StoryResultSet;
 import org.jbehave.core.ConfigurableEmbedder;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;

@@ -1,8 +1,8 @@
-package com.exubero.jbehave;
+package com.exubero.jbehave.specification;
 
 import org.junit.Test;
 
-import static com.exubero.jbehave.JBehaveSpecificationBuilder.aSpecificationBuilderWithSteps;
+import static com.exubero.jbehave.specification.JBehaveSpecificationBuilder.aSpecificationBuilderWithSteps;
 
 public class BuildSpecification {
     private final StorySteps storySteps = new StorySteps();

@@ -1,11 +1,11 @@
-package com.exubero.jbehave.model;
+package com.exubero.jbehave.specification.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.exubero.jbehave.model.Result.SUCCESSFUL;
+import static com.exubero.jbehave.specification.model.Result.SUCCESSFUL;
 
 public class ExampleResult {
     private final List<String> headerRow;

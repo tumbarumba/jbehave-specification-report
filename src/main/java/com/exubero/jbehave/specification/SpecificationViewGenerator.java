@@ -1,7 +1,7 @@
-package com.exubero.jbehave;
+package com.exubero.jbehave.specification;
 
-import com.exubero.jbehave.model.ReportModel;
-import com.exubero.jbehave.model.StoryResultSet;
+import com.exubero.jbehave.specification.model.ReportModel;
+import com.exubero.jbehave.specification.model.StoryResultSet;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;

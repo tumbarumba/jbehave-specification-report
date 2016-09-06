@@ -1,11 +1,11 @@
-package com.exubero.jbehave.model;
+package com.exubero.jbehave.specification.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import static com.exubero.jbehave.model.TitleConverter.convertToTitle;
+import static com.exubero.jbehave.specification.model.TitleConverter.convertToTitle;
 
 public final class StoryGroup {
     private final String path;

@@ -1,4 +1,4 @@
-package com.exubero.jbehave;
+package com.exubero.jbehave.specification;
 
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;

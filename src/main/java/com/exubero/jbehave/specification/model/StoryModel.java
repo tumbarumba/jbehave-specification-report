@@ -1,4 +1,4 @@
-package com.exubero.jbehave.model;
+package com.exubero.jbehave.specification.model;
 
 import org.jbehave.core.configuration.Keywords;
 
@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.exubero.jbehave.model.TitleConverter.convertToTitle;
+import static com.exubero.jbehave.specification.model.TitleConverter.convertToTitle;
 
 public final class StoryModel {
     private final StoryResult storyResult;
