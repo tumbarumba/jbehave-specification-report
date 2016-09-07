@@ -23,11 +23,11 @@ public final class StoryResult {
         scenarioResults.add(scenarioResult);
     }
 
-    public List<ScenarioResult> getScenarioResults() {
+    List<ScenarioResult> getScenarioResults() {
         return scenarioResults;
     }
 
-    public Result getSummaryResult() {
+    Result getSummaryResult() {
         return scenarioResults.stream()
                 .map(ScenarioResult::getSummaryResult)
                 .reduce(SUCCESSFUL, (a, n) -> n.getPriority() > a.getPriority() ? n : a);

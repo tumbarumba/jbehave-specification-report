@@ -21,17 +21,17 @@ public class ExampleResult {
         stepResults.add(stepResult);
     }
 
-    public List<String> getValues() {
-        return headerRow.stream().map(header -> tableRow.get(header)).collect(Collectors.toList());
+    List<String> getValues() {
+        return headerRow.stream().map(tableRow::get).collect(Collectors.toList());
     }
 
-    public Result getSummaryResult() {
+    Result getSummaryResult() {
         return stepResults.stream()
                 .map(StepResult::getResult)
                 .reduce(SUCCESSFUL, (a, n) -> n.getPriority() > a.getPriority() ? n : a);
     }
 
-    public List<StepResult> getSteps() {
+    List<StepResult> getSteps() {
         return stepResults;
     }
 }

@@ -16,7 +16,7 @@ public class StoryResultSet {
         pathToStoryResult.put(currentStory.getStory().getPath(), currentStory);
     }
 
-    public Collection<StoryResult> storyResults() {
+    Collection<StoryResult> storyResults() {
         return pathToStoryResult.values();
     }
 

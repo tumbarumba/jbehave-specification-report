@@ -9,11 +9,11 @@ public final class StepResult {
         this.result = result;
     }
 
-    public String getStep() {
+    String getStep() {
         return step;
     }
 
-    public Result getResult() {
+    Result getResult() {
         return result;
     }
 }

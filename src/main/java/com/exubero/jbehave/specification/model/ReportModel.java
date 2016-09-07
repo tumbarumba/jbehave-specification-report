@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("WeakerAccess")
 public final class ReportModel {
     public static final String TITLE_PROP = "title";
 
@@ -23,6 +24,7 @@ public final class ReportModel {
         this.viewResources = viewResources;
     }
 
+    @SuppressWarnings("unused") // used in template
     public String title() {
         return viewResources.getProperty(TITLE_PROP, "Specifications");
     }
@@ -35,9 +37,10 @@ public final class ReportModel {
                 .collect(Collectors.toList());
     }
 
-    public StoryGroup topLevelStoryGroup() {
+    @SuppressWarnings("unused") // used in template
+    public StoryGroupModel topLevelStoryGroup() {
         Map<String, List<StoryModel>> allGroups = stories().stream().collect(Collectors.groupingBy(StoryModel::group));
-        StoryGroup topLevelGroup = new StoryGroup("");
+        StoryGroupModel topLevelGroup = new StoryGroupModel("");
         allGroups.keySet().stream()
                 .sorted()
                 .forEach(groupPath ->  topLevelGroup.addGroupStories(groupPath, allGroups.get(groupPath)));
@@ -51,5 +54,5 @@ public final class ReportModel {
             int result = a.group().compareTo(b.group());
             return (result == 0) ? a.path().compareTo(b.path()) : result;
         }
-    };
+    }
 }

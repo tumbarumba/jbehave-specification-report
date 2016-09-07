@@ -1,7 +1,6 @@
 package com.exubero.jbehave.specification;
 
 import com.exubero.jbehave.specification.model.ReportModel;
-import com.exubero.jbehave.specification.model.ResultModel;
 import com.exubero.jbehave.specification.model.StoryResultSet;
 import org.jbehave.core.ConfigurableEmbedder;
 import org.jbehave.core.configuration.Configuration;
@@ -20,8 +19,6 @@ import java.util.Properties;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
-import static org.jbehave.core.reporters.Format.HTML;
-import static org.jbehave.core.reporters.Format.HTML_TEMPLATE;
 import static org.jbehave.core.reporters.Format.XML;
 
 public final class JBehaveSpecificationBuilder extends ConfigurableEmbedder {

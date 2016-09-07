@@ -1,16 +1,20 @@
 package com.exubero.jbehave.specification.model;
 
+@SuppressWarnings("WeakerAccess")
 public class ResultModel {
     private final Result result;
 
+    @SuppressWarnings("unused") // used in template
     public ResultModel(Result result) {
         this.result = result;
     }
 
+    @SuppressWarnings("unused") // used in template
     public String getName() {
         return result.name();
     }
 
+    @SuppressWarnings("unused") // used in template
     public String getBootstrapClass() {
         switch (result) {
             case SUCCESSFUL:
@@ -28,6 +32,7 @@ public class ResultModel {
         }
     }
 
+    @SuppressWarnings("unused") // used in template
     public String getBootstrapIcon() {
         switch (result) {
             case SUCCESSFUL:

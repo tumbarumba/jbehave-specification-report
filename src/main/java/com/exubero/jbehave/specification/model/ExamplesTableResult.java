@@ -21,7 +21,7 @@ public class ExamplesTableResult {
         return table.getHeaders();
     }
 
-    public List<ExampleResult> getExampleResults() {
+    List<ExampleResult> getExampleResults() {
         return exampleResults;
     }
 }

@@ -16,14 +16,14 @@ public final class ScenarioResult {
         this.scenario = scenario;
     }
 
-    public Result getSummaryResult() {
+    Result getSummaryResult() {
         if (hasExamples()) {
             return reduceExampleResults(getExamplesTableResult());
         }
         return reduceStepResults(getStepResults());
     }
 
-    public Scenario getScenario() {
+    Scenario getScenario() {
         return scenario;
     }
 
@@ -31,7 +31,7 @@ public final class ScenarioResult {
         stepResults.add(stepResult);
     }
 
-    public List<StepResult> getStepResults() {
+    List<StepResult> getStepResults() {
         return stepResults;
     }
 
@@ -39,11 +39,11 @@ public final class ScenarioResult {
         this.examplesTableResult = examplesTableResult;
     }
 
-    public boolean hasExamples() {
+    boolean hasExamples() {
         return examplesTableResult != null;
     }
 
-    public ExamplesTableResult getExamplesTableResult() {
+    ExamplesTableResult getExamplesTableResult() {
         return examplesTableResult;
     }
 

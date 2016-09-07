@@ -1,5 +1,6 @@
 package com.exubero.jbehave.specification.model;
 
+@SuppressWarnings("WeakerAccess")
 public final class StepModel {
     private final StepResult stepResult;
 
@@ -7,10 +8,12 @@ public final class StepModel {
         this.stepResult = stepResult;
     }
 
+    @SuppressWarnings("unused") // used in template
     public StepResult getStepResult() {
         return stepResult;
     }
 
+    @SuppressWarnings("unused") // used in template
     public String getStep() {
         return stepResult.getStep()
                 .replace("<", "&lt;")
@@ -19,6 +22,7 @@ public final class StepModel {
                 .replace("｠", "</strong>");
     }
 
+    @SuppressWarnings("unused") // used in template
     public ResultModel getResult() {
         return new ResultModel(stepResult.getResult());
     }

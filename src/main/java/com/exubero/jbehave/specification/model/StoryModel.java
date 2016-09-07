@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import static com.exubero.jbehave.specification.model.TitleConverter.convertToTitle;
 
+@SuppressWarnings("WeakerAccess")
 public final class StoryModel {
     private final StoryResult storyResult;
     private final Keywords keywords;
@@ -17,6 +18,7 @@ public final class StoryModel {
         this.keywords = keywords;
     }
 
+    @SuppressWarnings("unused") // used in template
     public String name() {
         return convertToTitle(storyResult.getStory().getName());
     }
@@ -25,6 +27,7 @@ public final class StoryModel {
         return !path().contains("/");
     }
 
+    @SuppressWarnings("unused") // used in template
     public List<String> breadcrumbs() {
         String[] pathParts = path().split("/");
         return Arrays.stream(pathParts)
@@ -45,18 +48,22 @@ public final class StoryModel {
         return path.substring(0, path.lastIndexOf("/"));
     }
 
+    @SuppressWarnings("unused") // used in template
     public String pathId() {
         return path().replaceAll("/", "_").replace(".story", "");
     }
 
+    @SuppressWarnings("unused") // used in template
     public String description() {
         return storyResult.getStory().getDescription().asString();
     }
 
+    @SuppressWarnings("unused") // used in template
     public String narrative() {
         return storyResult.getStory().getNarrative().asString(keywords).replaceAll("\n", "<br>");
     }
 
+    @SuppressWarnings("unused") // used in template
     public List<ScenarioModel> scenarios() {
         return storyResult.getScenarioResults().stream()
                 .map(ScenarioModel::new)
