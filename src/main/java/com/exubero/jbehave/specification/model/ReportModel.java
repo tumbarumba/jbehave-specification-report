@@ -9,8 +9,9 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 public final class ReportModel {
-    public final static String TITLE_PROP = "title";
-    private final static StoryPathComparator BY_GROUP_THEN_PATH = new StoryPathComparator();
+    public static final String TITLE_PROP = "title";
+
+    private static final StoryPathComparator BY_GROUP_THEN_PATH = new StoryPathComparator();
 
     private final StoryResultSet storyResultSet;
     private final Keywords keywords;
@@ -37,9 +38,9 @@ public final class ReportModel {
     public StoryGroup topLevelStoryGroup() {
         Map<String, List<StoryModel>> allGroups = stories().stream().collect(Collectors.groupingBy(StoryModel::group));
         StoryGroup topLevelGroup = new StoryGroup("");
-        allGroups.keySet().stream().sorted().forEach( groupPath -> {
-            topLevelGroup.addGroupStories(groupPath, allGroups.get(groupPath));
-        });
+        allGroups.keySet().stream()
+                .sorted()
+                .forEach(groupPath ->  topLevelGroup.addGroupStories(groupPath, allGroups.get(groupPath)));
 
         return topLevelGroup;
     }

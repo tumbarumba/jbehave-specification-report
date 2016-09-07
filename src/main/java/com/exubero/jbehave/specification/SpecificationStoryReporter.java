@@ -92,9 +92,9 @@ public class SpecificationStoryReporter implements StoryReporter {
     @Override
     public void beforeExamples(List<String> steps, ExamplesTable table) {
         currentExamplesTable = new ExamplesTableResult(table);
-        steps.forEach(step -> {
+        for(String step : steps) {
             currentScenario.addStepResult(new StepResult(step, Result.IGNORABLE));
-        });
+        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.exubero.jbehave.specification.model.Result.FAILED;
+import static com.exubero.jbehave.specification.model.Result.PENDING;
 
 public class StoryResultSet {
     private final Map<String, StoryResult> pathToStoryResult = new HashMap<>();
@@ -31,10 +32,8 @@ public class StoryResultSet {
 
         for(StoryResult storyResult : storyResults()) {
             stories++;
-            switch (storyResult.getSummaryResult()){
-                case PENDING:
-                    storiesPending++;
-                    break;
+            if(PENDING.equals(storyResult.getSummaryResult())) {
+                storiesPending++;
             }
 
             for(ScenarioResult scenarioResult : storyResult.getScenarioResults()) {
@@ -46,6 +45,8 @@ public class StoryResultSet {
                     case PENDING:
                         scenariosPending++;
                         break;
+                    default:
+                        // do nothing
                 }
 
                 if (scenarioResult.hasExamples()) {
