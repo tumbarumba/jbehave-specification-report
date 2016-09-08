@@ -32,6 +32,9 @@ public class SpecificationViewGeneratorTest {
     public void htmlContainsSummaryStatistics() throws IOException {
         try(SpecificationPage specificationPage = specificationPageFrom(specificationFile)) {
             specificationPage.assertStatisticsExists();
+            specificationPage.assertStatisticsStoryCount(7);
+            specificationPage.assertStatisticsScenarioCount(17);
+            specificationPage.assertStatisticsScenarioFailedCount(2);
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.exubero.jbehave.specification;
 
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlSpan;
+import org.junit.Assert;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +25,18 @@ public class SpecificationPage implements AutoCloseable {
 
     public void assertStatisticsExists() {
         assertNotNull(htmlPage.getElementById("summary-statistics"));
+    }
+
+    public void assertStatisticsStoryCount(int expectedCount) {
+        HtmlSpan storyCountSpan = (HtmlSpan) htmlPage.getByXPath("//div[contains(@id, 'summary-statistics')]/p/span[contains(@class, 'story-count')]").get(0);
+        int actualCount = Integer.parseInt(storyCountSpan.asText());
+        Assert.assertEquals(expectedCount, actualCount);
+    }
+
+    public void assertStatisticsScenarioCount(int expectedCount) {
+    }
+
+    public void assertStatisticsScenarioFailedCount(int expectedCount) {
     }
 
     @Override
