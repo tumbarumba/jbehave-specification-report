@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Example Specifications</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        body {
+            position: relative;
+        }
+        .story-group {
+            margin-bottom: 0;
+        }
+        .story-heading {
+            margin-top: 0;
+        }
+        .panel-heading h3,
+        .panel-heading h4 {
+            margin: 0;
+        }
+        .step {
+            margin: 0;
+        }
+        .examples-table tr.example-steps td {
+            border-top: none;
+        }
+        #side-nav {
+            margin-top: 20px;
+        }
+        #side-nav .nav li > a {
+            border-left: 2px solid white;
+        }
+        #side-nav .nav li.active > a {
+            border-left: 2px solid #563d7c;
+        }
+        #side-nav .nav > li > a {
+            padding-left: 18px;
+        }
+        #side-nav .nav > li.active > a {
+            color: #563d7c;
+            font-weight: bold;
+        }
+        #side-nav .nav .nav > li > a {
+            padding: 5px 5px 5px 28px;
+            font-size: smaller;
+        }
+        #side-nav .nav .nav .nav > li > a {
+            padding-left: 38px;
+        }
+        #side-nav ul.nav > li > ul.nav {
+            display: none;
+        }
+        #side-nav ul.nav > li.active > ul.nav {
+            display: block;
+        }
+        #side-nav ul.nav > li > ul.nav > li > ul.nav {
+            display: none;
+        }
+        #side-nav ul.nav > li > ul.nav > li.active > ul.nav {
+            display: block;
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body data-spy="scroll" data-target="#side-nav" data-offset="0">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <nav id="side-nav" class="hidden-print hidden-sm hidden-xs affix" role="navigation">
+                    <ul class="nav">
+        <li><a href="#A_High_Level_Feature">A High Level Feature</a></li>
+        <li><a href="#Another_High_Level_Feature">Another High Level Feature</a></li>
+        <li><a href="#First_Category">First Category</a>
+            <ul class="nav">
+        <li><a href="#First_Category_Amazing_Capability">Amazing Capability</a></li>
+        <li><a href="#First_Category_Standard_Capability">Standard Capability</a></li>
+        <li><a href="#First_Nested_Feature">First Nested Feature</a>
+            <ul class="nav">
+        <li><a href="#First_Category_First_Nested_Feature_Nested_Capability">Nested Capability</a></li>
+</ul>
+        </li>
+</ul>
+        </li>
+        <li><a href="#Second_Category">Second Category</a>
+            <ul class="nav">
+        <li><a href="#Second_Category_Special_Feature">Special Feature</a></li>
+        <li><a href="#Deeply_Nested_Category">Deeply Nested Category</a>
+            <ul class="nav">
+        <li><a href="#Second_Category_Deeply_Nested_Category_Last_Feature">Last Feature</a></li>
+</ul>
+        </li>
+</ul>
+        </li>
+</ul>
+            </nav>
+        </div>
+        <div class="col-md-9">
+            <h1>Example Specifications</h1>
+                <a name="" id=""></a>
+    <hr>
+    <a name="A_High_Level_Feature" id="A_High_Level_Feature"></a>
+    <h2 class="story-heading">A High Level Feature</h2>
+    <p>This is a description of a high level feature.</p>
+    <div class="alert alert-info">
+        <p>As a user<br>I want to perform an action<br>So that I can achieve a business goal</p>
+    </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;First Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Second Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Third Scenario with Examples</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-default" title="IGNORABLE"><span class="glyphicon glyphicon-minus"></span>&nbsp;Given system is &lt;old_state&gt;</p>
+                    <p class="step text-default" title="IGNORABLE"><span class="glyphicon glyphicon-minus"></span>&nbsp;When I perform &lt;action&gt;</p>
+                    <p class="step text-default" title="IGNORABLE"><span class="glyphicon glyphicon-minus"></span>&nbsp;Then system should be &lt;new_state&gt;</p>
+            </div>
+                    <table class="table table-striped table-condensed table-hover examples-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                                <th>old_state</th>
+                                <th>action</th>
+                                <th>new_state</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="danger">
+                                <td><a href="#0012d201-f3d9-42b7-9fbf-659faf4a788b" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="0012d201-f3d9-42b7-9fbf-659faf4a788b"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                                    <td>flapping</td>
+                                    <td>pull plug</td>
+                                    <td>falling</td>
+                            </tr>
+                            <tr id="0012d201-f3d9-42b7-9fbf-659faf4a788b" class="collapse example-steps danger">
+                                <td></td>
+                                <td colspan="3">
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given system is <strong>flapping</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I perform <strong>pull plug</strong><br>
+                                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Then system should be <strong>falling</strong><br>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td><a href="#4fbab665-ea4d-4f8d-bd3a-367b12e0a752" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="4fbab665-ea4d-4f8d-bd3a-367b12e0a752"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+                                    <td>proud</td>
+                                    <td>gesture rudely</td>
+                                    <td>embarrassed</td>
+                            </tr>
+                            <tr id="4fbab665-ea4d-4f8d-bd3a-367b12e0a752" class="collapse example-steps success">
+                                <td></td>
+                                <td colspan="3">
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given system is <strong>proud</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I perform <strong>gesture rudely</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system should be <strong>embarrassed</strong><br>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td><a href="#059022e8-55d1-4ff9-9a07-222259d6803b" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="059022e8-55d1-4ff9-9a07-222259d6803b"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+                                    <td>crying</td>
+                                    <td>hug</td>
+                                    <td>happy</td>
+                            </tr>
+                            <tr id="059022e8-55d1-4ff9-9a07-222259d6803b" class="collapse example-steps success">
+                                <td></td>
+                                <td colspan="3">
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given system is <strong>crying</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I perform <strong>hug</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system should be <strong>happy</strong><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+    <hr>
+    <a name="Another_High_Level_Feature" id="Another_High_Level_Feature"></a>
+    <h2 class="story-heading">Another High Level Feature</h2>
+    <p>This is a description of another high level feature.</p>
+    <div class="alert alert-info">
+        <p>As a user<br>I want to perform an action<br>So that I can achieve a business goal</p>
+    </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Goldilocks and the Three Bears</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Hansel and Gretel</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;The Little Mermaid</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-default" title="IGNORABLE"><span class="glyphicon glyphicon-minus"></span>&nbsp;Given system is &lt;old_state&gt;</p>
+                    <p class="step text-default" title="IGNORABLE"><span class="glyphicon glyphicon-minus"></span>&nbsp;When I perform &lt;action&gt;</p>
+                    <p class="step text-default" title="IGNORABLE"><span class="glyphicon glyphicon-minus"></span>&nbsp;Then system should be &lt;new_state&gt;</p>
+            </div>
+                    <table class="table table-striped table-condensed table-hover examples-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                                <th>old_state</th>
+                                <th>action</th>
+                                <th>new_state</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="success">
+                                <td><a href="#c22fa94e-ca87-4042-966f-ab840c8eeb52" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="c22fa94e-ca87-4042-966f-ab840c8eeb52"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+                                    <td>splishing</td>
+                                    <td>gyrate hips</td>
+                                    <td>sposhing</td>
+                            </tr>
+                            <tr id="c22fa94e-ca87-4042-966f-ab840c8eeb52" class="collapse example-steps success">
+                                <td></td>
+                                <td colspan="3">
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given system is <strong>splishing</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I perform <strong>gyrate hips</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system should be <strong>sposhing</strong><br>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td><a href="#5ffc9cfe-7fd1-4c21-9072-23bbd5c95ef5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="5ffc9cfe-7fd1-4c21-9072-23bbd5c95ef5"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+                                    <td>sploshing</td>
+                                    <td>wink suggestively</td>
+                                    <td>splashing</td>
+                            </tr>
+                            <tr id="5ffc9cfe-7fd1-4c21-9072-23bbd5c95ef5" class="collapse example-steps success">
+                                <td></td>
+                                <td colspan="3">
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given system is <strong>sploshing</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I perform <strong>wink suggestively</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system should be <strong>splashing</strong><br>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td><a href="#3e2f932d-1ce4-4a23-9eed-b71555755150" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="3e2f932d-1ce4-4a23-9eed-b71555755150"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+                                    <td>splashing</td>
+                                    <td>wiggle eyebrows</td>
+                                    <td>fainting</td>
+                            </tr>
+                            <tr id="3e2f932d-1ce4-4a23-9eed-b71555755150" class="collapse example-steps success">
+                                <td></td>
+                                <td colspan="3">
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given system is <strong>splashing</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I perform <strong>wiggle eyebrows</strong><br>
+                                        <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system should be <strong>fainting</strong><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+    <a name="First_Category" id="First_Category"></a>
+    <hr>
+    <a name="First_Category_Amazing_Capability" id="First_Category_Amazing_Capability"></a>
+        <p class="story-group"><strong>First Category</strong> &raquo; </p>
+    <h2 class="story-heading">Amazing Capability</h2>
+    <p></p>
+    <div class="alert alert-info">
+        <p>As a user<br>I want to perform an action<br>So that I can achieve a business goal</p>
+    </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;scenario description</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+    <hr>
+    <a name="First_Category_Standard_Capability" id="First_Category_Standard_Capability"></a>
+        <p class="story-group"><strong>First Category</strong> &raquo; </p>
+    <h2 class="story-heading">Standard Capability</h2>
+    <p></p>
+    <div class="alert alert-info">
+        <p>As a user<br>I want to perform an action<br>So that I can achieve a business goal</p>
+    </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;First Successful Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-time"></span>&nbsp;Second Pending Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-warning" title="PENDING"><span class="glyphicon glyphicon-time"></span>&nbsp;Then we're not ready to check this yet</p>
+            </div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Third Failed Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-danger" title="FAILED"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Then something went wrong</p>
+            </div>
+        </div>
+    <a name="First_Nested_Feature" id="First_Nested_Feature"></a>
+    <hr>
+    <a name="First_Category_First_Nested_Feature_Nested_Capability" id="First_Category_First_Nested_Feature_Nested_Capability"></a>
+        <p class="story-group"><strong>First Category</strong> &raquo; <strong>First Nested Feature</strong> &raquo; </p>
+    <h2 class="story-heading">Nested Capability</h2>
+    <p></p>
+    <div class="alert alert-info">
+        <p>As a user<br>I want to perform an action<br>So that I can achieve a business goal</p>
+    </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Nested Feature Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+
+
+    <a name="Second_Category" id="Second_Category"></a>
+    <hr>
+    <a name="Second_Category_Special_Feature" id="Second_Category_Special_Feature"></a>
+        <p class="story-group"><strong>Second Category</strong> &raquo; </p>
+    <h2 class="story-heading">Special Feature</h2>
+    <p></p>
+    <div class="alert alert-info">
+        <p>As a user<br>I want to perform an action<br>So that I can achieve a business goal</p>
+    </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-time"></span>&nbsp;Special Feature Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-warning" title="PENDING"><span class="glyphicon glyphicon-time"></span>&nbsp;When I do something pending</p>
+                    <p class="step text-info" title="NOT_PERFORMED"><span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Another Special Feature Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Yet Another Special Feature Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Even More Special Feature Scenario</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Crikey, Does This Thing Ever End?</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+    <a name="Deeply_Nested_Category" id="Deeply_Nested_Category"></a>
+    <hr>
+    <a name="Second_Category_Deeply_Nested_Category_Last_Feature" id="Second_Category_Deeply_Nested_Category_Last_Feature"></a>
+        <p class="story-group"><strong>Second Category</strong> &raquo; <strong>Deeply Nested Category</strong> &raquo; </p>
+    <h2 class="story-heading">Last Feature</h2>
+    <p></p>
+    <div class="alert alert-info">
+        <p>As a user<br>I want to perform an action<br>So that I can achieve a business goal</p>
+    </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;scenario description</h4>
+            </div>
+            <div class="panel-body">
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Given a system state</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;When I do something</p>
+                    <p class="step text-success" title="SUCCESSFUL"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;Then system is in a different state</p>
+            </div>
+        </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
