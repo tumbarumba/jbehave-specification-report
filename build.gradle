@@ -6,7 +6,7 @@ apply from: "$rootDir/gradle/libraries.gradle"
 
 group = 'com.exubero.jbehave'
 archivesBaseName = 'jbehave-specification-report'
-version = '0.0.1-SNAPSHOT'
+version = '0.9.0'
 
 repositories {
     mavenCentral()
@@ -80,7 +80,7 @@ uploadArchives {
                 licenses {
                     license {
                         name 'BSD License'
-                        url 'https://github.com/tumbarumba/jbehave-specification-report/master/LICENSE.txt'
+                        url 'https://github.com/tumbarumba/jbehave-specification-report/blob/master/LICENSE.txt'
                     }
                 }
 
