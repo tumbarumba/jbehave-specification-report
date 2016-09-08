@@ -42,3 +42,7 @@ same location at the `StorySteps` class.
 
 See [`SpecificationViewGeneratorTest`](https://github.com/tumbarumba/jbehave-specification-report/blob/master/src/test/java/com/exubero/jbehave/specification/SpecificationViewGeneratorTest.java)
 for an example of how this looks in working code.
+
+Here is an [example of the generated report](https://tumbarumba.github.io/jbehave-specification-report/example/specification.html):
+ 
+![Example JBehave Specification Report](https://tumbarumba.github.io/jbehave-specification-report/example/specification-report-screenshot.png)
