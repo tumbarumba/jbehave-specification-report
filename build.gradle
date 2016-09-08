@@ -1,11 +1,12 @@
 apply plugin: 'java'
 apply plugin: 'checkstyle'
+apply plugin: 'maven'
+apply plugin: 'signing'
 apply from: "$rootDir/gradle/libraries.gradle"
 
-ext {
-    group = 'com.exubero.jbehave'
-    version = '0.0.1-SNAPSHOT'
-}
+group = 'com.exubero.jbehave'
+archivesBaseName = 'jbehave-specification-report'
+version = '0.0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -33,3 +34,64 @@ checkstyle {
     sourceSets = [project.sourceSets.main]
 }
 
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'JBehave Specification Report'
+                packaging 'jar'
+                description 'Builds a single page report of all JBehave stories.'
+                url 'https://github.com/tumbarumba/jbehave-specification-report'
+
+                scm {
+                    connection 'scm:git:https://github.com/tumbarumba/jbehave-specification-report.git'
+                    developerConnection 'scm:git:https://github.com/tumbarumba/jbehave-specification-report.git'
+                    url 'https://github.com/tumbarumba/jbehave-specification-report'
+                }
+
+                licenses {
+                    license {
+                        name 'BSD License'
+                        url 'https://github.com/tumbarumba/jbehave-specification-report/master/LICENSE.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'tumbarumba'
+                        name 'Joe Schmetzer'
+                        email 'joe@exubero.com'
+                    }
+                }
+            }
+        }
+    }
+}
