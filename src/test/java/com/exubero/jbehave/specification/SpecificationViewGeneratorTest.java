@@ -1,31 +1,37 @@
 package com.exubero.jbehave.specification;
 
 import org.jbehave.core.embedder.Embedder;
-import org.jbehave.core.io.IOUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
+
 import static com.exubero.jbehave.specification.JBehaveSpecificationBuilder.aSpecificationBuilderWithSteps;
+import static com.exubero.jbehave.specification.SpecificationPage.specificationPageFrom;
+import static org.junit.Assert.assertTrue;
 
 public class SpecificationViewGeneratorTest {
-    private static String specificationHtml;
+    private static File specificationFile;
 
     @BeforeClass
-    static void buildSpecificationHtml() throws Throwable {
+    public static void buildSpecificationHtml() throws Throwable {
         StorySteps storySteps = new StorySteps();
         try {
             aSpecificationBuilderWithSteps(storySteps)
                     .withSpecificationTitle("Example Specifications")
                     .run();
-            
-            specificationHtml = IOUtils.toString()
-        } catch (Embedder.RunningStoriesFailed) {
+        } catch (Embedder.RunningStoriesFailed ex) {
             // This is not a problem - the example stories have deliberate errors
         }
-
+        specificationFile = new File("build/reports/jbehave/specification.html");
+        assertTrue(specificationFile.exists());
     }
 
-    @Test(expected = Embedder.RunningStoriesFailed.class)
-    public void verifyStoriesAndWriteSpecification() throws Throwable {
+    @Test
+    public void htmlContainsSummaryStatistics() throws IOException {
+        try(SpecificationPage specificationPage = specificationPageFrom(specificationFile)) {
+            specificationPage.assertStatisticsExists();
+        }
     }
 }

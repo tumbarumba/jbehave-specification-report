@@ -23,6 +23,7 @@ dependencies {
             libs.mustacheCompiler
 
     testCompile libs.hamcrestLibrary,
+            libs.htmlUnit,
             libs.junit,
             libs.mockito
 }
