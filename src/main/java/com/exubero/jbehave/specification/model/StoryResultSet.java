@@ -1,13 +1,8 @@
 package com.exubero.jbehave.specification.model;
 
-import org.jbehave.core.reporters.ReportsCount;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.exubero.jbehave.specification.model.Result.FAILED;
-import static com.exubero.jbehave.specification.model.Result.PENDING;
 
 public class StoryResultSet {
     private final Map<String, StoryResult> pathToStoryResult = new HashMap<>();
@@ -20,55 +15,13 @@ public class StoryResultSet {
         return pathToStoryResult.values();
     }
 
-    public ReportsCount reportsCount() {
-        int stories = 0;
-        int storiesNotAllowed = 0;
-        int storiesPending = 0;
-        int scenarios = 0;
-        int scenariosFailed = 0;
-        int scenariosNotAllowed = 0;
-        int scenariosPending = 0;
-        int stepsFailed = 0;
+    public SummaryStatistics summaryStatistics() {
+        SummaryStatistics summaryStatistics = new SummaryStatistics();
 
         for(StoryResult storyResult : storyResults()) {
-            stories++;
-            if(PENDING.equals(storyResult.getSummaryResult())) {
-                storiesPending++;
-            }
-
-            for(ScenarioResult scenarioResult : storyResult.getScenarioResults()) {
-                scenarios++;
-                switch (scenarioResult.getSummaryResult()) {
-                    case FAILED:
-                        scenariosFailed++;
-                        break;
-                    case PENDING:
-                        scenariosPending++;
-                        break;
-                    default:
-                        // do nothing
-                }
-
-                if (scenarioResult.hasExamples()) {
-                    ExamplesTableResult examplesTableResult = scenarioResult.getExamplesTableResult();
-                    for(ExampleResult exampleResult : examplesTableResult.getExampleResults()) {
-                        for(StepResult stepResult : exampleResult.getSteps()) {
-                            if (FAILED.equals(stepResult.getResult())) {
-                                stepsFailed++;
-                            }
-                        }
-                    }
-                } else {
-                    for(StepResult stepResult : scenarioResult.getStepResults()) {
-                        if (FAILED.equals(stepResult.getResult())) {
-                            stepsFailed++;
-                        }
-                    }
-                }
-            }
+            summaryStatistics.add(storyResult.summaryStatistics());
         }
 
-        return new ReportsCount(stories, storiesNotAllowed, storiesPending, scenarios, scenariosFailed,
-                scenariosNotAllowed, scenariosPending, stepsFailed);
+        return summaryStatistics;
     }
 }

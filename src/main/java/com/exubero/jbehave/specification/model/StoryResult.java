@@ -5,6 +5,7 @@ import org.jbehave.core.model.Story;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.exubero.jbehave.specification.model.Result.PENDING;
 import static com.exubero.jbehave.specification.model.Result.SUCCESSFUL;
 
 public final class StoryResult {
@@ -31,5 +32,22 @@ public final class StoryResult {
         return scenarioResults.stream()
                 .map(ScenarioResult::getSummaryResult)
                 .reduce(SUCCESSFUL, (a, n) -> n.getPriority() > a.getPriority() ? n : a);
+    }
+
+    public SummaryStatistics summaryStatistics() {
+        SummaryStatistics storyStatistics = new SummaryStatistics();
+        storyStatistics.setStoryCount(1);
+        if (scenarioResults.size() > 0) {
+            storyStatistics.setStoriesWithScenariosCount(1);
+        }
+        if (getSummaryResult().equals(PENDING)) {
+            storyStatistics.setPendingStoriesCount(1);
+        }
+
+        for (ScenarioResult scenarioResult : scenarioResults) {
+            storyStatistics.add(scenarioResult.summaryStatistics());
+        }
+
+        return storyStatistics;
     }
 }

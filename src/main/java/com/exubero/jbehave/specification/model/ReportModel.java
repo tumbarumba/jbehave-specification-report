@@ -48,6 +48,10 @@ public final class ReportModel {
         return topLevelGroup;
     }
 
+    public SummaryStatisticsModel summaryStatistics() {
+        return new SummaryStatisticsModel(storyResultSet.summaryStatistics());
+    }
+
     private static final class StoryPathComparator implements Comparator<StoryModel> {
         @Override
         public int compare(StoryModel a, StoryModel b) {

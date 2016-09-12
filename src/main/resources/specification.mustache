@@ -85,6 +85,17 @@
         </div>
         <div class="col-md-9">
             <h1>{{title}}</h1>
+            {{#summaryStatistics}}
+                <div id="summary-statistics" class="alert alert-{{result.bootstrapClass}}" role="alert">
+                    <p><strong><span class="glyphicon glyphicon-{{result.bootstrapIcon}}"></span>&nbsp;{{heading}}</strong></p>
+                    <p>There are <span class="story-count">{{storyCount}}</span> stories with
+                        <span class="scenario-count">{{scenarioCount}}</span> scenarios in total{{#isScenariosFailed}},
+                            of which <span class="scenario-failed-count">{{scenarioFailedCount}}</span> scenarios
+                            failed{{/isScenariosFailed}}.
+                    </p>
+                    <p>This report was created on {{creationTime}}.</p>
+                </div>
+            {{/summaryStatistics}}
             {{#topLevelStoryGroup}}
                 {{> group_stories }}
             {{/topLevelStoryGroup}}

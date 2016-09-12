@@ -36,24 +36,28 @@ public class SpecificationViewGenerator implements ViewGenerator {
 
     @Override
     public void generateReportsView(File outputDirectory, List<String> formats, Properties viewResources) {
-        ReportModel reportModel = new ReportModel(storyResultSet, keywords, viewResources);
+        if (!outputDirectory.exists() && !outputDirectory.mkdirs()) {
+            throw new RuntimeException("Unable to create report directory " + outputDirectory.getAbsolutePath());
+        }
 
-        outputDirectory.mkdirs();
         File specificationFile = new File(outputDirectory, "specification.html");
         try(Writer writer = new FileWriter(specificationFile)) {
-            MustacheFactory mustacheFactory = new DefaultMustacheFactory();
-            Mustache mustache = mustacheFactory.compile("specification.mustache");
-            mustache.execute(writer, reportModel);
-
+            applySpecificationTemplate(viewResources, writer);
             System.out.println("Specification written to " + specificationFile.getCanonicalPath());
         } catch (IOException e) {
             throw new RuntimeException("Failed to write report " + specificationFile.getAbsolutePath(), e);
         }
     }
 
+    private void applySpecificationTemplate(Properties viewResources, Writer writer) {
+        MustacheFactory mustacheFactory = new DefaultMustacheFactory();
+        Mustache mustache = mustacheFactory.compile("specification.mustache");
+        mustache.execute(writer, new ReportModel(storyResultSet, keywords, viewResources));
+    }
+
     @Override
     public ReportsCount getReportsCount() {
-        return storyResultSet.reportsCount();
+        return storyResultSet.summaryStatistics().getReportsCount();
     }
 
     @Override
