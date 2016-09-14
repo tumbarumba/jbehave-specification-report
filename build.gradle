@@ -1,3 +1,5 @@
+import java.time.Instant
+
 apply plugin: 'java'
 apply plugin: 'checkstyle'
 apply plugin: 'maven'
@@ -7,6 +9,8 @@ apply from: "$rootDir/gradle/libraries.gradle"
 group = 'com.exubero.jbehave'
 archivesBaseName = 'jbehave-specification-report'
 version = '0.9.1-SNAPSHOT'
+
+ext.buildTime = Instant.now()
 
 repositories {
     mavenCentral()
@@ -32,6 +36,14 @@ dependencies {
 checkstyle {
     configFile = rootProject.file('config/checkstyle/checkstyle.xml')
     sourceSets = [project.sourceSets.main]
+}
+
+jar {
+    manifest {
+        attributes("Implementation-Title":   "JBehave Specification Report",
+                "Implementation-Version":    project.version,
+                "Build-Time":                project.buildTime.toString())
+    }
 }
 
 task javadocJar(type: Jar) {

@@ -5,6 +5,7 @@ import org.jbehave.core.configuration.Keywords;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -50,6 +51,16 @@ public final class ReportModel {
 
     public SummaryStatisticsModel summaryStatistics() {
         return new SummaryStatisticsModel(storyResultSet.summaryStatistics());
+    }
+
+    public String implementationTitle() {
+        Optional<String> maybeTitle = Optional.ofNullable(getClass().getPackage().getImplementationTitle());
+        return maybeTitle.orElse("JBehave Specification Report");
+    }
+
+    public String implementationVersion() {
+        Optional<String> maybeVersion = Optional.ofNullable(getClass().getPackage().getImplementationVersion());
+        return maybeVersion.orElse("dev");
     }
 
     private static final class StoryPathComparator implements Comparator<StoryModel> {
